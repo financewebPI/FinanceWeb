@@ -386,6 +386,41 @@ docs: restaura README da documentação
 
 Documentação restaurada com sucesso.
 
+### Atividade 17 - Evolução da Modelagem do Banco de Dados
+
+#### Objetivo
+
+Preparar a estrutura do sistema para futuras integrações com serviços de autenticação e comunicação.
+
+#### Descrição
+
+Foi adicionada à modelagem da tabela de usuários a informação de telefone WhatsApp. A inclusão foi planejada para permitir futuramente a implementação de recuperação de senha por token, autenticação em duas etapas e envio de notificações relacionadas às funcionalidades do sistema FinanceWeb.
+
+#### Resultado
+
+Modelagem preparada para futuras integrações com APIs de mensageria.
+
+### Atividade 18 - Primeira Execução Local da Aplicação
+
+#### Objetivo
+
+Validar a configuração do ambiente de desenvolvimento e a estrutura inicial da aplicação.
+
+#### Descrição
+
+Foi realizada a primeira execução local da aplicação FinanceWeb utilizando o framework Flask.
+
+A aplicação foi iniciada através do arquivo principal app.py e disponibilizada localmente por meio do servidor de desenvolvimento do Flask.
+
+O acesso foi realizado através do endereço:
+
+http://127.0.0.1:5000
+
+#### Resultado
+
+Aplicação executada com sucesso em ambiente local, validando a estrutura inicial do backend e a configuração do ambiente de desenvolvimento.
+
+
 ## Situação Atual do Projeto
 
 ### Concluído
@@ -402,12 +437,13 @@ Documentação restaurada com sucesso.
 ✅ Estrutura Flask criada
 ✅ Controle de versão funcionando
 ✅ Colaboradores configurados
+✅ Definir o fluxo das telas do sistema
+✅ Criar documentação das telas
+✅ Modelar banco de dados
 
 ### Próximas Atividades
 
-🔄 Definir o fluxo das telas do sistema
-🔄 Criar documentação das telas
-🔄 Modelar banco de dados
+
 🔄 Criar primeira interface HTML
 🔄 Executar aplicação Flask localmente
 🔄 Integrar PostgreSQL
