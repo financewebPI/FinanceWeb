@@ -1,0 +1,10 @@
+:root {
+    --fw-blue: #002F87;
+    --fw-blue-light: #1E4DB7;
+    --fw-orange: #FF7A00;
+    --fw-light: #F5F7FA;
+    --fw-dark: #333333;
+    --fw-white: #FFFFFF;
+    --fw-radius: 12px;
+    --fw-shadow:0 10px 25px rgba(0,0,0,.39);
+}

@@ -386,7 +386,7 @@ docs: restaura README da documentação
 
 Documentação restaurada com sucesso.
 
-### Atividade 17 - Evolução da Modelagem do Banco de Dados
+### Atividade 17 - Evolução dos Requisitos de Usuário
 
 #### Objetivo
 
@@ -420,6 +420,57 @@ http://127.0.0.1:5000
 
 Aplicação executada com sucesso em ambiente local, validando a estrutura inicial do backend e a configuração do ambiente de desenvolvimento.
 
+### Atividade 19 - Definição da Identidade Visual
+
+#### Objetivo
+
+Definir os padrões visuais do sistema FinanceWeb.
+
+#### Descrição
+
+Foi criada a documentação de identidade visual do projeto, incluindo logotipo, paleta de cores, tipografia, slogan e diretrizes de interface.
+
+As cores escolhidas foram inspiradas em soluções modernas do setor financeiro, priorizando confiança, tecnologia e experiência do usuário.
+
+#### Resultado
+
+Identidade visual definida para utilização nas próximas etapas de desenvolvimento.
+
+### Atividade 20 - Desenvolvimento da Landing Page
+
+#### Objetivo
+
+Criar a primeira interface visual do sistema FinanceWeb.
+
+#### Descrição
+
+Foi desenvolvida a primeira versão da Landing Page do sistema utilizando HTML e CSS.
+
+A página passou a utilizar a identidade visual oficial do projeto, incluindo logotipo, paleta de cores institucional, botões personalizados e área de apresentação das principais funcionalidades do sistema.
+
+Também foram implementados ajustes de layout utilizando CSS Grid para melhorar a organização e responsividade dos componentes.
+
+#### Resultado
+
+Primeira interface visual do FinanceWeb concluída e disponível em ambiente local.
+
+#### Atividade 21 - Refinamento da Landing Page
+
+##### Objetivo
+
+Melhorar a experiência visual e a organização dos componentes da página inicial do sistema.
+
+##### Descrição
+
+Foram realizados ajustes na Landing Page do FinanceWeb visando melhorar o contraste visual, a hierarquia dos elementos e a responsividade da interface.
+
+A seção de funcionalidades foi reestruturada utilizando CSS Grid, permitindo o alinhamento uniforme dos cards e melhor adaptação para diferentes tamanhos de tela.
+
+Também foram realizados ajustes em espaçamentos, sombras e organização visual dos componentes.
+
+##### Resultado
+
+Landing Page refinada com melhor organização visual, maior conforto de leitura e estrutura preparada para evolução das próximas funcionalidades.
 
 ## Situação Atual do Projeto
 
@@ -439,13 +490,12 @@ Aplicação executada com sucesso em ambiente local, validando a estrutura inici
 ✅ Colaboradores configurados
 ✅ Definir o fluxo das telas do sistema
 ✅ Criar documentação das telas
-✅ Modelar banco de dados
+✅ Executar aplicação Flask localmente
+✅ Criar primeira interface HTML
 
 ### Próximas Atividades
 
-
-🔄 Criar primeira interface HTML
-🔄 Executar aplicação Flask localmente
+🔄 Modelar banco de dados
 🔄 Integrar PostgreSQL
 🔄 Integrar AwesomeAPI
 🔄 Implementar Dashboard Financeiro

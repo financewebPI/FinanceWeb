@@ -156,6 +156,34 @@ Texto:
 
 ---
 
+## Arquivos de Marca
+
+### Logo Principal
+
+logo_horizontal_azul_p.png
+
+### Logo Tema Escuro
+
+logo_horizontal_branco_p.png
+
+### Logo Quadrada
+
+logo_quadrada_azul.png
+
+### Logo Alternativa
+
+logo_quadrada_laranja.png
+
+### Favicon
+
+favicon.png
+
+### Paleta de Cores
+
+paleta_de_cores.png
+
+---
+
 # Tipografia
 
 ## Fonte Principal

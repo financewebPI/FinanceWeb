@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+    <img src="{{ url_for('static', filename='img/logo_horizontal_azul_p.png') }}" alt="FinanceWeb" width="550">
+
+    <h1>
+        Controle suas finanças com inteligência
+    </h1>
+
+    <p>
+        Organize receitas, despesas e metas financeiras
+        em um único lugar.
+    </p>
+
+    <div class="hero-buttons">
+
+        <button class="btn-primary">
+            Criar Conta
+        </button>
+
+        <button class="btn-secondary">
+            Entrar
+        </button>
+
+    </div>
+
+</div>
+
+<section class="benefits">
+
+    <div class="card">
+        <h3>📊 Dashboard</h3>
+        <p>
+            Visualize sua situação financeira
+            em tempo real.
+        </p>
+    </div>
+
+    <div class="card">
+        <h3>💰 Receitas</h3>
+        <p>
+            Organize todas as suas entradas.
+        </p>
+    </div>
+
+    <div class="card">
+        <h3>📉 Despesas</h3>
+        <p>
+            Controle gastos e categorias.
+        </p>
+    </div>
+
+    <div class="card">
+        <h3>🎯 Metas</h3>
+        <p>
+            Acompanhe seus objetivos financeiros.
+        </p>
+    </div>
+
+</section>
+
+{% endblock %}

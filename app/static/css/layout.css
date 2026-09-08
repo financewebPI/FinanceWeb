@@ -1,0 +1,21 @@
+body { margin: 0; padding: 0; font-family: "Segoe UI", sans-serif; background: var(--fw-light); color: var(--fw-dark);}
+
+h1 { font-size: 3rem; color: var(--fw-blue); margin-bottom: 15px;}
+
+p{ font-size: 1.2rem; color: var(--fw-dark); margin-bottom: 20px;}
+
+.container { width: 90%; max-width: 1200px; margin: auto; text-align: center; padding-top: 60px; min-height: 10vh;}
+
+.hero-buttons { margin-top: 30px;}
+
+.benefits {background: white; width: 90%; max-width: 1200px; margin: 50px auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; justify-content: center; flex-wrap: wrap; padding:40px; border-radius: 20px; box-shadow: var(--fw-shadow);}
+
+    @media (max-width: 1024px) {.benefits { grid-template-columns: repeat(2, 1fr); }}
+
+    @media (max-width: 768px) {.benefits { grid-template-columns: 1fr; }}
+
+.card { margin: 20px; background: #F8FAFC; padding: 20px; border-radius: 12px; border: 1px solid #E2E8F0; box-shadow: var(--fw-shadow); text-align: center; transition: transform 0.3s ease; }
+
+.card:hover { transform: translateY(-10px); }
+
+.features-section { background: var(--fw-blue); color: white; padding: 60px 20px;}
