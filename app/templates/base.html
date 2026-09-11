@@ -5,12 +5,9 @@
     <meta charset="UTF-8">
 
     <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
+        name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>
-        FinanceWeb
-    </title>
+    <title> FinanceWeb </title>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     
@@ -19,6 +16,23 @@
 </head>
 
 <body>
+        <nav class="navbar">
+
+            <div class="navbar-container">
+
+                <img src="{{ url_for('static', filename='img/logo_horizontal_azul_p.png') }}" alt="FinanceWeb" class="navbar-logo" >
+
+                <div class="navbar-menu">         
+
+                    <a href= # class="btn-primary"> Criar Minha </a>
+
+                    <a href= # class="btn-secondary"> Entrar </a>
+
+            </div>
+
+        </div>
+
+    </nav>
 
     {% block content %}
     {% endblock %}
@@ -26,3 +40,5 @@
 </body>
 
 </html>
+
+

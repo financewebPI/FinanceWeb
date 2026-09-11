@@ -472,6 +472,21 @@ Também foram realizados ajustes em espaçamentos, sombras e organização visua
 
 Landing Page refinada com melhor organização visual, maior conforto de leitura e estrutura preparada para evolução das próximas funcionalidades.
 
+## Data: 10/09/2026
+
+#### Atividade 22 - Implementação da Navbar
+
+##### Objetivo:
+Criar uma estrutura de navegação reutilizável para o sistema.
+
+##### Descrição:
+Foi implementada a primeira versão da navbar do FinanceWeb utilizando a identidade visual definida para o projeto.
+
+Também foram realizados ajustes na organização dos arquivos CSS, removendo estilos duplicados e centralizando a estilização dos botões em componentes reutilizáveis.
+
+##### Resultado:
+Navbar funcional implementada e arquitetura CSS refinada para suportar o crescimento do sistema.
+
 ## Situação Atual do Projeto
 
 ### Concluído
