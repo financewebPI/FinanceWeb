@@ -541,6 +541,32 @@ Tela de Cadastro implementada com sucesso e integrada ao fluxo de navegação da
 
 usuários.
 
+#### Atividade 25 - Modelagem das Entidades Financeiras do Sistema
+
+##### Objetivo
+
+Definir a estrutura conceitual dos dados que serão utilizados pelo FinanceWeb para registro e controle das informações financeiras dos usuários.
+
+##### Descrição
+
+Foi realizada a modelagem das principais entidades financeiras da aplicação, definindo os campos necessários para armazenamento de receitas, despesas e metas financeiras.
+
+Durante a modelagem foram analisadas situações reais de controle financeiro pessoal, com o objetivo de garantir que a estrutura do sistema seja capaz de representar 
+
+adequadamente entradas financeiras, gastos e objetivos financeiros dos usuários.
+
+A modelagem contemplou: Receitas; Despesas; Metas financeiras; Relacionamentos com usuários.
+
+Na entidade de despesas foram adicionados campos específicos para controle financeiro mais preciso: data_lancamento; data_vencimento; data_pagamento; status.
+
+Essa estrutura permitirá distinguir despesas pendentes, pagas, atrasadas ou canceladas, facilitando a futura construção de relatórios e dashboards financeiros.
+
+Também foram definidos os campos necessários para metas financeiras, incluindo prazo, valor acumulado e situação da meta.
+
+##### Resultado
+
+Modelagem conceitual das entidades financeiras concluída e documentada, fornecendo a base necessária para a futura implementação do banco de dados PostgreSQL.
+
 ## Situação Atual do Projeto
 
 ### Concluído
