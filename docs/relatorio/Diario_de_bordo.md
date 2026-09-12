@@ -454,13 +454,13 @@ Também foram implementados ajustes de layout utilizando CSS Grid para melhorar 
 
 Primeira interface visual do FinanceWeb concluída e disponível em ambiente local.
 
-#### Atividade 21 - Refinamento da Landing Page
+### Atividade 21 - Refinamento da Landing Page
 
-##### Objetivo
+#### Objetivo
 
 Melhorar a experiência visual e a organização dos componentes da página inicial do sistema.
 
-##### Descrição
+#### Descrição
 
 Foram realizados ajustes na Landing Page do FinanceWeb visando melhorar o contraste visual, a hierarquia dos elementos e a responsividade da interface.
 
@@ -468,37 +468,37 @@ A seção de funcionalidades foi reestruturada utilizando CSS Grid, permitindo o
 
 Também foram realizados ajustes em espaçamentos, sombras e organização visual dos componentes.
 
-##### Resultado
+#### Resultado
 
 Landing Page refinada com melhor organização visual, maior conforto de leitura e estrutura preparada para evolução das próximas funcionalidades.
 
 ## Data: 10/09/2026
 
-#### Atividade 22 - Implementação da Navbar
+### Atividade 22 - Implementação da Navbar
 
-##### Objetivo:
+#### Objetivo:
 
 Criar uma estrutura de navegação reutilizável para o sistema.
 
-##### Descrição:
+#### Descrição:
 
 Foi implementada a primeira versão da navbar do FinanceWeb utilizando a identidade visual definida para o projeto.
 
 Também foram realizados ajustes na organização dos arquivos CSS, removendo estilos duplicados e centralizando a estilização dos botões em componentes reutilizáveis.
 
-##### Resultado:
+#### Resultado:
 
 Navbar funcional implementada e arquitetura CSS refinada para suportar o crescimento do sistema.
 
 ## Data: 11/09/2026
 
-#### Atividade 23 - Implementação da Tela de Login
+### Atividade 23 - Implementação da Tela de Login
 
-##### Objetivo
+#### Objetivo
 
 Criar uma estrutura de login
 
-##### Descrição:
+#### Descrição:
 
 Foi criada a primeira versão da tela de Login do FinanceWeb utilizando componentes reutilizáveis de interface, incluindo formulário de autenticação, navegação para 
 
@@ -508,18 +508,18 @@ Também foram desenvolvidos componentes reutilizáveis para formulários, inclui
 
 poderão ser reutilizados em telas futuras como Cadastro e Recuperação de Senha.
 
-##### Resultado:
+#### Resultado:
 Sistema passou a possuir fluxo inicial de autenticação e navegação entre Landing Page, Login e Cadastro.
 
 ## Data: 12/09/2026
 
-#### Atividade 24 - Implementação da Tela de Cadastro
+### Atividade 24 - Implementação da Tela de Cadastro
 
-##### Objetivo
+#### Objetivo
 
 Criar a interface de cadastro de novos usuários para o sistema FinanceWeb.
 
-##### Descrição
+#### Descrição
 
 Foi desenvolvida a primeira versão da tela de Cadastro do FinanceWeb utilizando os componentes reutilizáveis já implementados durante o desenvolvimento da tela de Login.
 
@@ -527,27 +527,45 @@ A interface foi construída seguindo a identidade visual definida para o projeto
 
 formulários, navegação e ações de cadastro.
 
-Foram incluídos os seguintes campos: Nome Completo; E-mail;Celular / WhatsApp; Senha; Confirmação de Senha.
+Foram incluídos os seguintes campos: 
+
+Nome Completo; 
+
+E-mail;Celular / WhatsApp; 
+
+Senha; 
+
+Confirmação de Senha.
 
 Também foi implementada a navegação entre as telas de Cadastro e Login, permitindo ao usuário alternar entre os fluxos de autenticação e criação de conta.
 
-Durante o desenvolvimento foram reutilizados os componentes visuais previamente criados: FormCard; FormGroup; InputField; FormLinks; Botões padronizados da aplicação.
+Durante o desenvolvimento foram reutilizados os componentes visuais previamente criados: 
+
+FormCard; 
+
+FormGroup; 
+
+InputField; 
+
+FormLinks; 
+
+Botões padronizados da aplicação.
 
 Essa abordagem permitiu reduzir duplicação de código e manter consistência visual entre as telas do sistema.
 
-##### Resultado
+#### Resultado
 
 Tela de Cadastro implementada com sucesso e integrada ao fluxo de navegação da aplicação, permitindo a evolução futura para integração com banco de dados e autenticação de 
 
 usuários.
 
-#### Atividade 25 - Modelagem das Entidades Financeiras do Sistema
+### Atividade 25 - Modelagem das Entidades Financeiras do Sistema
 
-##### Objetivo
+#### Objetivo
 
 Definir a estrutura conceitual dos dados que serão utilizados pelo FinanceWeb para registro e controle das informações financeiras dos usuários.
 
-##### Descrição
+#### Descrição
 
 Foi realizada a modelagem das principais entidades financeiras da aplicação, definindo os campos necessários para armazenamento de receitas, despesas e metas financeiras.
 
@@ -555,17 +573,91 @@ Durante a modelagem foram analisadas situações reais de controle financeiro pe
 
 adequadamente entradas financeiras, gastos e objetivos financeiros dos usuários.
 
-A modelagem contemplou: Receitas; Despesas; Metas financeiras; Relacionamentos com usuários.
+A modelagem contemplou: 
 
-Na entidade de despesas foram adicionados campos específicos para controle financeiro mais preciso: data_lancamento; data_vencimento; data_pagamento; status.
+Receitas; 
+
+Despesas; 
+
+Metas financeiras; 
+
+Relacionamentos com usuários.
+
+Na entidade de despesas foram adicionados campos específicos para controle financeiro mais preciso: 
+
+data_lancamento; 
+
+data_vencimento; 
+
+data_pagamento; 
+
+status.
 
 Essa estrutura permitirá distinguir despesas pendentes, pagas, atrasadas ou canceladas, facilitando a futura construção de relatórios e dashboards financeiros.
 
 Também foram definidos os campos necessários para metas financeiras, incluindo prazo, valor acumulado e situação da meta.
 
-##### Resultado
+#### Resultado
 
 Modelagem conceitual das entidades financeiras concluída e documentada, fornecendo a base necessária para a futura implementação do banco de dados PostgreSQL.
+
+### Atividade 26 - Modelagem Física PostgreSQL
+
+#### Objetivo
+
+Definir a estrutura física do banco de dados da aplicação FinanceWeb para futura implementação utilizando PostgreSQL.
+
+#### Descrição
+
+Com base na modelagem conceitual previamente desenvolvida, foi realizada a definição física das tabelas que comporão o banco de dados da aplicação.
+
+Foram especificadas as estruturas das entidades: 
+
+Usuários; 
+
+Receitas; 
+
+Despesas; 
+
+Metas Financeiras.
+
+Durante a modelagem foram definidos: 
+
+Tipos de dados; 
+
+Chaves primárias; 
+
+Chaves estrangeiras; 
+
+Restrições de integridade; 
+
+Relacionamentos entre entidades.
+
+Foi dada atenção especial à entidade despesas, incorporando campos para controle de lançamentos, vencimentos e pagamentos.
+
+Os seguintes campos foram adicionados: 
+
+data_lancamento; 
+
+data_vencimento; 
+
+data_pagamento; 
+
+status.
+
+Essa definição permitirá ao sistema distinguir despesas registradas, pendentes, pagas, atrasadas ou canceladas, facilitando futuramente a construção de relatórios 
+
+financeiros e dashboards de acompanhamento.
+
+Também foram definidos os relacionamentos entre usuários e suas receitas, despesas e metas financeiras, garantindo integridade referencial na futura implementação do banco 
+
+de dados PostgreSQL.
+
+#### Resultado
+
+Modelagem física concluída e documentada, fornecendo a estrutura necessária para a próxima etapa de implementação do banco PostgreSQL e integração com a aplicação 
+
+FinanceWeb.
 
 ## Situação Atual do Projeto
 
@@ -586,16 +678,17 @@ Modelagem conceitual das entidades financeiras concluída e documentada, fornece
 ✅ Definir o fluxo das telas do sistema
 ✅ Criar documentação das telas
 ✅ Executar aplicação Flask localmente
-✅ Criar primeira interface HTML
 ✅ Landing Page
 ✅ Navbar
 ✅ Tela de Login
 ✅ Tela de Cadastro
+✅ Modelagem das Entidades Financeiras
+✅ Modelagem Física PostgreSQL
 
 ### Próximas Atividades
 
-🔄 Modelar banco de dados
-🔄 Integrar PostgreSQL
+🔄 Configurar PostgreSQL local
+🔄 Integrar PostgreSQL ao Flask
 🔄 Implementar Recuperação de Senha
 🔄 Implementar Dashboard Financeiro
 🔄 Integrar AwesomeAPI
@@ -603,6 +696,4 @@ Modelagem conceitual das entidades financeiras concluída e documentada, fornece
 
 # Considerações Finais
 
-O projeto FinanceWeb encontra-se na fase inicial de desenvolvimento. Até o momento foram concluídas as etapas de planejamento, configuração de ambiente, preparação da infraestrutura em nuvem, definição tecnológica, estruturação da documentação e implementação da base inicial da aplicação.
-
-As próximas atividades serão focadas na modelagem das telas, banco de dados, implementação das funcionalidades e publicação da aplicação.
+As próximas atividades serão direcionadas à implementação do banco de dados PostgreSQL, integração entre backend e persistência de dados, desenvolvimento do Dashboard Financeiro, integração com APIs externas e publicação da aplicação em ambiente de nuvem através da plataforma Render.
