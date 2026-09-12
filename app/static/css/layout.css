@@ -9,7 +9,7 @@ p{ font-size: 1.2rem; color: var(--fw-dark); margin-bottom: 20px;}
    NAVBAR
 ========================== */
 
-.navbar { background: white; box-shadow: 0 2px 10px rgba(0,0,0,.08); position: sticky; top: 0; z-index: 1000;}
+.navbar { background: white; box-shadow: var(--fw-shadow); position: sticky; top: 0; z-index: 1000;}
 .navbar-container { width: 90%; max-width: 1200px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 0;}
 .navbar-menu { display: flex; align-items: center; gap: 15px;}
 .nav-link { text-decoration: none; color: var(--fw-blue); font-weight: 600;}

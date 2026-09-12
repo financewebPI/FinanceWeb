@@ -477,15 +477,39 @@ Landing Page refinada com melhor organização visual, maior conforto de leitura
 #### Atividade 22 - Implementação da Navbar
 
 ##### Objetivo:
+
 Criar uma estrutura de navegação reutilizável para o sistema.
 
 ##### Descrição:
+
 Foi implementada a primeira versão da navbar do FinanceWeb utilizando a identidade visual definida para o projeto.
 
 Também foram realizados ajustes na organização dos arquivos CSS, removendo estilos duplicados e centralizando a estilização dos botões em componentes reutilizáveis.
 
 ##### Resultado:
+
 Navbar funcional implementada e arquitetura CSS refinada para suportar o crescimento do sistema.
+
+## Data: 11/09/2026
+
+#### Atividade 23 - Implementação da Tela de Login
+
+##### Objetivo
+
+Criar uma estrutura de login
+
+##### Descrição:
+
+Foi criada a primeira versão da tela de Login do FinanceWeb utilizando componentes reutilizáveis de interface, incluindo formulário de autenticação, navegação para 
+
+recuperação de senha e acesso ao cadastro de novos usuários.
+
+Também foram desenvolvidos componentes reutilizáveis para formulários, incluindo campos de entrada de dados, agrupamento de campos e cartão visual de autenticação, que 
+
+poderão ser reutilizados em telas futuras como Cadastro e Recuperação de Senha.
+
+##### Resultado:
+Sistema passou a possuir fluxo inicial de autenticação e navegação entre Landing Page, Login e Cadastro.
 
 ## Situação Atual do Projeto
 
@@ -507,13 +531,18 @@ Navbar funcional implementada e arquitetura CSS refinada para suportar o crescim
 ✅ Criar documentação das telas
 ✅ Executar aplicação Flask localmente
 ✅ Criar primeira interface HTML
+✅ Landing Page
+✅ Navbar
+✅ Tela de Login
 
 ### Próximas Atividades
 
+🔄 Implementar Tela de Cadastro
 🔄 Modelar banco de dados
 🔄 Integrar PostgreSQL
-🔄 Integrar AwesomeAPI
+🔄 Implementar Recuperação de Senha
 🔄 Implementar Dashboard Financeiro
+🔄 Integrar AwesomeAPI
 🔄 Realizar deploy no Render
 
 # Considerações Finais

@@ -22,11 +22,11 @@
 
                 <img src="{{ url_for('static', filename='img/logo_horizontal_azul_p.png') }}" alt="FinanceWeb" class="navbar-logo" >
 
-                <div class="navbar-menu">         
+                <div class="navbar-menu" >         
 
-                    <a href= # class="btn-primary"> Criar Minha </a>
+                    <a href= {{ url_for('cadastro') }} class="btn-navpri"> Criar uma conta</a>
 
-                    <a href= # class="btn-secondary"> Entrar </a>
+                    <a href= {{ url_for('login') }} class="btn-navsec"> Entrar </a>
 
             </div>
 
