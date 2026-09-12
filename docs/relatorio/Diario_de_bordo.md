@@ -511,6 +511,36 @@ poderão ser reutilizados em telas futuras como Cadastro e Recuperação de Senh
 ##### Resultado:
 Sistema passou a possuir fluxo inicial de autenticação e navegação entre Landing Page, Login e Cadastro.
 
+## Data: 12/09/2026
+
+#### Atividade 24 - Implementação da Tela de Cadastro
+
+##### Objetivo
+
+Criar a interface de cadastro de novos usuários para o sistema FinanceWeb.
+
+##### Descrição
+
+Foi desenvolvida a primeira versão da tela de Cadastro do FinanceWeb utilizando os componentes reutilizáveis já implementados durante o desenvolvimento da tela de Login.
+
+A interface foi construída seguindo a identidade visual definida para o projeto, utilizando componentes padronizados para campos de entrada de dados, agrupamento de 
+
+formulários, navegação e ações de cadastro.
+
+Foram incluídos os seguintes campos: Nome Completo; E-mail;Celular / WhatsApp; Senha; Confirmação de Senha.
+
+Também foi implementada a navegação entre as telas de Cadastro e Login, permitindo ao usuário alternar entre os fluxos de autenticação e criação de conta.
+
+Durante o desenvolvimento foram reutilizados os componentes visuais previamente criados: FormCard; FormGroup; InputField; FormLinks; Botões padronizados da aplicação.
+
+Essa abordagem permitiu reduzir duplicação de código e manter consistência visual entre as telas do sistema.
+
+##### Resultado
+
+Tela de Cadastro implementada com sucesso e integrada ao fluxo de navegação da aplicação, permitindo a evolução futura para integração com banco de dados e autenticação de 
+
+usuários.
+
 ## Situação Atual do Projeto
 
 ### Concluído
@@ -534,10 +564,10 @@ Sistema passou a possuir fluxo inicial de autenticação e navegação entre Lan
 ✅ Landing Page
 ✅ Navbar
 ✅ Tela de Login
+✅ Tela de Cadastro
 
 ### Próximas Atividades
 
-🔄 Implementar Tela de Cadastro
 🔄 Modelar banco de dados
 🔄 Integrar PostgreSQL
 🔄 Implementar Recuperação de Senha

@@ -14,7 +14,7 @@
 
 .btn-secondary:hover { opacity: .85;}
 
-.input-field { width:100%; max-width: 400px; padding: 12px 16px; border: 1px solid var(--fw-gray); border-radius: var(--fw-radius); margin-bottom: 16px; font-size: 16px; transition: border-color 0.3s ease;}
+.input-field { width:100%; max-width: 400px; padding: 12px 16px; border: 1px solid var(--fw-gray); border-radius: var(--fw-radius); font-size: 16px; transition: border-color 0.3s ease;}
 
 .input-field:focus { border-color: var(--fw-blue); outline: none; box-shadow:var(--fw-shadow) ; }
 
