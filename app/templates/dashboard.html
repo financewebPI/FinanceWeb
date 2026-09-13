@@ -9,9 +9,16 @@
     </h1>
 
     <p>
-        Bem-vindo,
-        {{ session.usuario_nome }}
-    </p>
+    Bem-vindo,
+    {{ session["usuario_nome"] }}
+</p>
+
+ <a href="{{ url_for('logout') }}" class="btn-secondary">
+   
+
+    Sair
+
+</a>
 
 </div>
 

@@ -124,6 +124,20 @@ def login():
 
     return render_template("login.html")
 
+@app.route("/logout")
+def logout():
+
+    session.clear()
+
+    flash(
+        "Logout realizado com sucesso!",
+        "sucesso"
+    )
+
+    return redirect(
+        url_for("home")
+    )
+
 @app.route("/dashboard")
 def dashboard():
 

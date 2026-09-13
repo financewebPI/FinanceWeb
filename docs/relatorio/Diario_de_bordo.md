@@ -777,6 +777,70 @@ Integração entre Flask e PostgreSQL concluída com sucesso, permitindo o cadas
 
 dados FinanceWeb.
 
+#### Atividade 29 - Implementação de Autenticação e Controle de Acesso
+
+#### Objetivo
+
+Implementar o processo de autenticação de usuários utilizando dados armazenados no PostgreSQL e criar mecanismos de controle de acesso às áreas protegidas do sistema.
+
+#### Descrição
+
+Foi realizada a implementação completa do fluxo de autenticação do FinanceWeb utilizando integração entre Flask e PostgreSQL.
+
+Inicialmente a tela de Login foi adaptada para utilizar requisições do tipo POST, permitindo o envio dos dados informados pelo usuário para o backend da aplicação.
+
+Foram definidos os campos:
+
+E-mail;
+
+Senha.
+
+Após o recebimento dos dados pelo Flask, foi implementada a consulta à tabela usuarios através do PostgreSQL, validando a existência de registros compatíveis com as 
+
+credenciais informadas.
+
+A autenticação passou a utilizar consultas SQL para validação de usuários cadastrados no banco de dados.
+
+Também foi implementado o sistema de mensagens utilizando flash() e redirect(), permitindo informar ao usuário situações como:
+
+Login realizado com sucesso;
+
+E-mail ou senha incorretos;
+
+Acesso não autorizado a áreas protegidas.
+
+Durante o desenvolvimento foi implementado o gerenciamento de sessão utilizando session do Flask.
+
+Após autenticação bem-sucedida, passaram a ser armazenadas informações do usuário autenticado, incluindo:
+
+Identificador do usuário;
+
+Nome;
+
+E-mail.
+
+Foi criada a primeira área protegida da aplicação:
+
+/dashboard
+
+O acesso a esta rota passou a exigir autenticação prévia.
+
+Usuários não autenticados são automaticamente redirecionados para a tela de Login.
+
+Também foi implementada a funcionalidade de Logout, responsável por:
+
+Encerrar a sessão do usuário;
+
+Limpar dados de autenticação;
+
+Redirecionar o usuário para a página inicial do sistema.
+
+Por fim foi realizada adaptação da navbar para exibir opções diferentes de acordo com o estado de autenticação do usuário.
+
+#### Resultado
+
+    Sistema de autenticação implementado com sucesso, permitindo login de usuários cadastrados, gerenciamento de sessão, proteção de rotas e encerramento de sessão através de logout.
+
 ## Situação Atual do Projeto
 
 ### Concluído
@@ -809,12 +873,20 @@ dados FinanceWeb.
 ✅ Persistência de usuários via interface
 ✅ Validação de formulários
 ✅ Sistema de mensagens com flash()
+✅ Login utilizando PostgreSQL
+✅ Autenticação de usuários
+✅ Sessão de usuário
+✅ Dashboard protegida
+✅ Logout
+✅ Controle de acesso
 
 ### Próximas Atividades
 
-🔄 Implementar Login utilizando PostgreSQL
 🔄 Implementar Recuperação de Senha
-🔄 Implementar Dashboard Financeiro
+🔄 Estruturar Dashboard Financeiro
+🔄 Cadastro de Receitas
+🔄 Cadastro de Despesas
+🔄 Cadastro de Metas
 🔄 Integrar AwesomeAPI
 🔄 Realizar deploy no Render
 
