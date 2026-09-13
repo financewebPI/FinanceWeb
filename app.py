@@ -24,3 +24,18 @@ if __name__ == "__main__":
         port=5000,
         debug=True
     )
+
+
+from database import conectar
+
+try:
+
+    con = conectar()
+
+    print("✅ Conectado ao PostgreSQL com sucesso!")
+
+    con.close()
+
+except Exception as erro:
+
+    print("❌ Erro ao conectar:", erro)
