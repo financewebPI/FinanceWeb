@@ -26,8 +26,6 @@ Desenvolver uma aplicação web denominada FinanceWeb para gerenciamento de fina
 
 ## Data: 07/09/2026
 
----
-
 ### Atividade 01 - Definição do Projeto
 
 #### Objetivo
@@ -711,6 +709,74 @@ Banco de dados PostgreSQL configurado com sucesso, estrutura física implementad
 
 Flask e banco de dados.
 
+## Data: 13/09/2026
+
+### Atividade 28 - Integração entre Flask e PostgreSQL
+
+#### Objetivo
+
+Integrar a aplicação FinanceWeb ao banco de dados PostgreSQL, permitindo a persistência de dados através da interface do sistema.
+
+#### Descrição
+
+Foi concluída a integração entre o backend desenvolvido em Flask e o banco de dados PostgreSQL configurado na etapa anterior.
+
+Inicialmente foi realizada a instalação da biblioteca responsável pela comunicação entre Python e PostgreSQL:
+
+psycopg2-binary.
+
+Em seguida foi criado o módulo responsável pelo gerenciamento das conexões com o banco de dados, centralizando os parâmetros de conexão da aplicação.
+
+Após a validação da comunicação entre Flask e PostgreSQL, foi iniciada a implementação do fluxo de cadastro de usuários.
+
+A tela de Cadastro foi modificada para utilizar o método POST e passou a enviar os dados preenchidos pelo usuário para o backend da aplicação.
+
+Também foram definidos identificadores para todos os campos do formulário, permitindo que as informações fossem recebidas e processadas pelo Flask.
+
+Durante os testes foi validado o recebimento dos seguintes dados:
+
+Nome;
+
+E-mail;
+
+Celular / WhatsApp;
+
+Senha;
+
+Confirmação de Senha.
+
+Posteriormente foi implementada a persistência dos dados na tabela usuarios, permitindo que novos registros fossem inseridos diretamente no PostgreSQL através da interface 
+
+do sistema.
+
+Além da gravação dos dados, foram implementadas validações iniciais de negócio, incluindo a conferência entre senha e confirmação de senha.
+
+Também foi implementado um sistema de mensagens utilizando flash() e redirect(), permitindo o retorno visual de mensagens de sucesso ou erro diretamente na tela de 
+
+Cadastro.
+
+Foram realizados testes de integração contemplando:
+
+Conexão com PostgreSQL;
+
+Recebimento de dados via formulário;
+
+Inserção de registros no banco;
+
+Validação de confirmação de senha;
+
+Exibição de mensagens de sucesso;
+
+Exibição de mensagens de erro.
+
+Os testes confirmaram a correta integração entre interface, backend e banco de dados.
+
+#### Resultado
+
+Integração entre Flask e PostgreSQL concluída com sucesso, permitindo o cadastro de usuários através da interface web e a persistência automática dos dados no banco de 
+
+dados FinanceWeb.
+
 ## Situação Atual do Projeto
 
 ### Concluído
@@ -739,10 +805,14 @@ Flask e banco de dados.
 ✅ Banco FinanceWeb criado
 ✅ Estrutura física do banco implementada
 ✅ Primeiros testes de persistência realizados
+✅ Integração entre Flask e PostgreSQL
+✅ Persistência de usuários via interface
+✅ Validação de formulários
+✅ Sistema de mensagens com flash()
 
 ### Próximas Atividades
 
-🔄 Integrar PostgreSQL ao Flask
+🔄 Implementar Login utilizando PostgreSQL
 🔄 Implementar Recuperação de Senha
 🔄 Implementar Dashboard Financeiro
 🔄 Integrar AwesomeAPI

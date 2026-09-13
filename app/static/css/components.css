@@ -38,3 +38,8 @@
 
 .form-links p { font-size: 0.95rem; margin: 10px 0;}
 
+.alert { padding: 12px; border-radius: var(--fw-radius); margin-bottom: 20px; text-align: center; font-weight: 600;}
+
+.sucesso { background: #D1FAE5; color: #065F46; border: 1px solid #10B981;}
+
+.erro { background: #FEE2E2; color: #991B1B; border: 1px solid #EF4444;}

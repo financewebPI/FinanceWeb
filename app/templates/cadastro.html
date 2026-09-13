@@ -10,12 +10,31 @@
         Cadastre-se para começar a controlar suas finanças.
     </p>
 
-    <form>
+    {% with mensagens = get_flashed_messages(with_categories=true) %}
+
+    {% if mensagens %}
+
+        {% for categoria, mensagem in mensagens %}
+
+            <div class="alert {{ categoria }}">
+
+                {{ mensagem }}
+
+            </div>
+
+        {% endfor %}
+
+    {% endif %}
+
+{% endwith %}
+
+    <form method="POST">
 
         <div class="form-group">
 
             <input
                 type="text"
+                name="nome"
                 class="input-field"
                 placeholder="Nome completo"
                 required>
@@ -26,6 +45,7 @@
 
             <input
                 type="email"
+                name="email"
                 class="input-field"
                 placeholder="E-mail"
                 required>
@@ -36,6 +56,7 @@
 
             <input
                 type="tel"
+                name="telefone"
                 class="input-field"
                 placeholder="Celular / WhatsApp"
                 required>
@@ -46,6 +67,7 @@
 
             <input
                 type="password"
+                name="senha"
                 class="input-field"
                 placeholder="Senha"
                 required>
@@ -56,6 +78,7 @@
 
             <input
                 type="password"
+                name="confirmar_senha"
                 class="input-field"
                 placeholder="Confirmar Senha"
                 required>
