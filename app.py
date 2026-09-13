@@ -1,5 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
-
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 from database import conectar
 
 app = Flask(
@@ -13,10 +12,6 @@ app.secret_key = "financeweb2026"
 @app.route("/")
 def home():
     return render_template("index.html")
-
-@app.route("/login")
-def login():
-    return render_template("login.html")
 
 @app.route("/cadastro", methods=["GET", "POST"])
 def cadastro():
@@ -81,9 +76,71 @@ def cadastro():
 
     return render_template("cadastro.html")
 
+@app.route("/login", methods=["GET", "POST"])
+def login():
 
+    if request.method == "POST":
 
+        email = request.form.get("email")
+        senha = request.form.get("senha")
 
+        try:
+
+            con = conectar()
+            cursor = con.cursor()
+
+            cursor.execute(
+            """
+            select * from usuarios where email = %s and senha = %s
+            """,
+            (
+                email,
+                senha
+            )
+            )
+            usuario = cursor.fetchone()
+
+            cursor.close()
+            con.close()
+
+            if usuario:
+                session["usuario_id"] = usuario[0]
+                session["usuario_nome"] = usuario[1]
+                session["usuario_email"] = usuario[2]
+                flash("Login realizado com sucesso!", "sucesso")
+                return redirect(url_for("dashboard"))
+            else:
+                flash("E-mail ou senha incorretos.", "erro")
+
+            return redirect(url_for("login"))
+
+        except Exception as erro:
+
+            print("Erro:", erro)
+
+            flash("Erro ao realizar login.", "erro")
+
+            return redirect(url_for("login"))    
+
+    return render_template("login.html")
+
+@app.route("/dashboard")
+def dashboard():
+
+    if "usuario_id" not in session:
+
+        flash(
+            "Faça login para acessar o dashboard.",
+            "erro"
+        )
+
+        return redirect(
+            url_for("login")
+        )
+
+    return render_template(
+        "dashboard.html"
+    )
 
 try:
 
