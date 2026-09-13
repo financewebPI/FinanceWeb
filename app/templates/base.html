@@ -20,11 +20,15 @@
 
             <div class="navbar-container">
 
-                <img src="{{ url_for('static', filename='img/logo_horizontal_azul_p.png') }}" alt="FinanceWeb" class="navbar-logo" >
+                <a href="{{ url_for('home') }}">
+
+                    <img src="{{ url_for('static', filename='img/logo_horizontal_azul_p.png') }}" alt="FinanceWeb" class="navbar-logo">
+
+                </a>
 
                 <div class="navbar-menu" >         
 
-                    <a href= {{ url_for('cadastro') }} class="btn-navpri"> Criar uma conta</a>
+                    <a href= {{ url_for('cadastro') }} class="btn-navpri"> Criar conta</a>
 
                     <a href= {{ url_for('login') }} class="btn-navsec"> Entrar </a>
 

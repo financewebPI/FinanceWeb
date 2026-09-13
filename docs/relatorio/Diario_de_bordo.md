@@ -659,6 +659,58 @@ Modelagem física concluída e documentada, fornecendo a estrutura necessária p
 
 FinanceWeb.
 
+### Atividade 27 - Configuração Inicial do PostgreSQL
+
+#### Objetivo
+
+Preparar o ambiente de banco de dados da aplicação FinanceWeb e implementar a estrutura física definida durante a modelagem do sistema.
+
+#### Descrição
+
+Foi realizada a instalação e configuração do PostgreSQL 18 juntamente com a ferramenta administrativa pgAdmin 4.
+
+Após a validação do ambiente, foi criado o banco de dados denominado:
+
+financeweb
+
+Em seguida foram implementadas as tabelas definidas na modelagem física do sistema:
+
+usuarios;
+
+receitas;
+
+despesas;
+
+metas.
+
+Durante o processo foram configuradas:
+
+Chaves primárias;
+
+Chaves estrangeiras;
+
+Relacionamentos entre entidades;
+
+Restrições de integridade;
+
+Valores padrão para campos de controle.
+
+Também foi realizado o primeiro teste prático de persistência de dados através da inserção e consulta de um usuário diretamente no banco de dados, validando:
+
+Funcionamento do PostgreSQL;
+
+Criação automática de identificadores;
+
+Preenchimento automático de data de cadastro;
+
+Aplicação dos valores padrão definidos na modelagem.
+
+#### Resultado
+
+Banco de dados PostgreSQL configurado com sucesso, estrutura física implementada e primeiro registro persistido com sucesso, preparando o sistema para a integração entre 
+
+Flask e banco de dados.
+
 ## Situação Atual do Projeto
 
 ### Concluído
@@ -684,10 +736,12 @@ FinanceWeb.
 ✅ Tela de Cadastro
 ✅ Modelagem das Entidades Financeiras
 ✅ Modelagem Física PostgreSQL
+✅ Banco FinanceWeb criado
+✅ Estrutura física do banco implementada
+✅ Primeiros testes de persistência realizados
 
 ### Próximas Atividades
 
-🔄 Configurar PostgreSQL local
 🔄 Integrar PostgreSQL ao Flask
 🔄 Implementar Recuperação de Senha
 🔄 Implementar Dashboard Financeiro
