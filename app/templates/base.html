@@ -28,11 +28,14 @@
 
                 <div class="navbar-menu" >         
 
-                    {% if session.get("usuario_id") %}
+                    {% if session.get("usuario_admin") %}
 
-                    
+                        <a href="{{ url_for('usuarios') }}" class="btn-navsec"> Usuários </a>
+                        <a href="{{ url_for('dashboard') }}" class="btn-primary"> Dashboard </a>
+                        
+                    {% endif %}
 
-                    
+                    {% if session.get("usuario_id") %}               
 
                         <a href= {{ url_for('logout') }} class="btn-navsec"> Sair </a>
 

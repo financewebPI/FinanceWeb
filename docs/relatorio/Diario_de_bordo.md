@@ -841,6 +841,122 @@ Por fim foi realizada adaptação da navbar para exibir opções diferentes de a
 
     Sistema de autenticação implementado com sucesso, permitindo login de usuários cadastrados, gerenciamento de sessão, proteção de rotas e encerramento de sessão através de logout.
 
+### Atividade 30 - Implementação do Painel Administrativo de Usuários
+
+#### Objetivo
+
+Desenvolver uma área administrativa protegida para visualização e gerenciamento dos usuários cadastrados no sistema 
+
+FinanceWeb.
+
+#### Descrição
+
+Foi implementada uma nova área administrativa acessível apenas para usuários autenticados e com perfil administrativo.
+
+Foi criada a rota protegida:
+
+/usuarios
+
+permitindo a consulta dos registros armazenados na tabela de usuários do PostgreSQL.
+
+A tela administrativa passou a exibir:
+
+Identificador do usuário;
+
+Nome;
+
+E-mail;
+
+WhatsApp;
+
+Data de cadastro;
+
+Status ativo;
+
+Perfil administrativo.
+
+Também foram implementadas validações de acesso utilizando sessões do Flask, impedindo que usuários não autenticados ou 
+
+sem privilégios administrativos acessem a área.
+
+Foram adicionadas exibições amigáveis para os campos booleanos, substituindo os valores técnicos True e False por:
+
+Sim
+
+Não
+
+para facilitar a interpretação das informações pelos usuários administrativos.
+
+#### Resultado
+
+Painel administrativo de usuários implementado com sucesso, permitindo visualização segura dos registros cadastrados no 
+
+sistema.
+
+### Atividade 31 - Implementação do CRUD de Usuários e Controle de Perfis
+
+#### Objetivo
+
+Permitir que administradores realizem o gerenciamento completo dos usuários cadastrados no FinanceWeb.
+
+#### Descrição
+
+Foi implementado o CRUD administrativo de usuários utilizando integração entre Flask e PostgreSQL.
+
+Foram desenvolvidas funcionalidades para:
+
+Atualização de Status
+
+Permitir ativação e desativação de usuários através da interface administrativa.
+
+A operação realiza atualização do campo:
+
+ativo
+
+na tabela de usuários.
+
+Usuários desativados passam a receber mensagem específica ao tentar realizar login:
+
+Usuário inativo. Entre em contato com o administrador.
+
+Gerenciamento de Administradores
+
+Foi implementada a funcionalidade de promoção e remoção de privilégios administrativos, utilizando o campo:
+
+administrador
+
+da tabela de usuários.
+
+Também foram implementadas validações de segurança para impedir:
+
+Alteração do próprio perfil administrativo;
+
+Remoção do último administrador do sistema.
+
+Exclusão de Usuários
+
+Foi implementada a exclusão de usuários diretamente pela interface administrativa.
+
+Foram adicionadas validações para impedir:
+
+Exclusão da própria conta do administrador autenticado;
+
+Exclusão do último administrador existente no sistema.
+
+Controle de Acesso
+
+A navegação da aplicação passou a se adaptar conforme o perfil do usuário autenticado.
+
+Usuários administradores visualizam funcionalidades administrativas, enquanto usuários comuns possuem acesso apenas às 
+
+áreas permitidas.
+
+#### Resultado
+
+CRUD completo de usuários implementado com sucesso, incluindo gerenciamento de perfis administrativos, ativação e 
+
+desativação de usuários, exclusão protegida e controle de acesso baseado em perfis.
+
 ## Situação Atual do Projeto
 
 ### Concluído
@@ -879,6 +995,12 @@ Por fim foi realizada adaptação da navbar para exibir opções diferentes de a
 ✅ Dashboard protegida
 ✅ Logout
 ✅ Controle de acesso
+✅ Painel Administrativo de Usuários
+✅ CRUD Completo de Usuários
+✅ Controle de Perfis Administrativos
+✅ Ativação e Desativação de Usuários
+✅ Controle de Acesso por Perfil
+✅ Proteção do Último Administrador
 
 ### Próximas Atividades
 

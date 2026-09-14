@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+    <h1>Usuários Cadastrados</h1>
+
+    <table class="usuarios-table">
+
+        <thead>
+
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>WhatsApp</th>
+                <th>Cadastro</th>
+                <th>Ativo</th>
+                <th>Administrador</th>
+                <th>Ações</th>
+                <th>Promover/Demover</th>
+                <th>Excluir</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for usuario in usuarios %}
+
+            <tr>
+
+                <td>{{ usuario[0] }}</td>
+                <td>{{ usuario[1] }}</td>
+                <td>{{ usuario[2] }}</td>
+                <td>{{ usuario[3] }}</td>
+                <td>{{ usuario[4] }}</td>
+                <td>{% if usuario[5] %}Sim{% else %}Não{% endif %}</td>
+                <td>{% if usuario[6] %}Sim{% else %}Não{% endif %}</td>
+                <td><a href="{{ url_for('toggle_usuario', id=usuario[0]) }}" class="btn btn-sm btn-outline-primary"> {% if usuario[5] %}Desativar{% else %}Ativar{% endif %} </a> </td>
+                <td><a href="{{ url_for('toggle_admin', id=usuario[0]) }}" class="btn btn-sm btn-outline-secondary"> {% if usuario[6] %}Demover{% else %}Promover{% endif %} </a> </td>
+                <td><a href="{{ url_for('excluir_usuario', id=usuario[0]) }}" class="btn btn-sm btn-outline-danger">Excluir</a></td>
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

@@ -70,4 +70,15 @@ p{ font-size: 1.2rem; color: var(--fw-dark); margin-bottom: 20px;}
       
       .hero-buttons { flex-direction: column; gap: 12px; align-items: center;}}
 
+.usuarios-table { width: 100%; border-collapse: collapse; margin-top: 30px; background: white; box-shadow: var(--fw-shadow);}
+
+.usuarios-table th,
+
+.usuarios-table td { padding: 12px; border: 1px solid #E2E8F0; text-align: left;}
+
+.usuarios-table th { background: var(--fw-blue); color: white;}
+
+.usuarios-table tr:nth-child(even) { background: #F8FAFC;}
+
+
 
