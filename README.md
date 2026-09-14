@@ -4,9 +4,9 @@ Esta pasta armazenará toda a documentação do projeto.
 
 ## Conteúdo
 
-- Levantamento de requisitos
+- Levantamento dos requisitos
 - Casos de uso
 - Modelagem do banco de dados
 - Protótipos das telas
 - Planejamento de testes
-- Planejamento do deploy
+- Planejamento de deploy
