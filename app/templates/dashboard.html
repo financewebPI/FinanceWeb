@@ -13,12 +13,12 @@
     {{ session["usuario_nome"] }}
 </p>
 
- <a href="{{ url_for('logout') }}" class="btn-secondary">
-   
+<div class="hero-buttons">
 
-    Sair
-
-</a>
+ <a href="{{ url_for('receitas') }}" class="btn btn-navpri fa-solid fa-money-bill-wave"> Receitas </a>   
+ <a href="{{ url_for('logout') }}" class="btn btn-navsec fa-solid fa-right-from-bracket"> Sair </a>
+ 
+</div>
 </div>
 
 {% endblock %}

@@ -957,6 +957,62 @@ CRUD completo de usuários implementado com sucesso, incluindo gerenciamento de 
 
 desativação de usuários, exclusão protegida e controle de acesso baseado em perfis.
 
+## Data: 14/09/2026
+
+### Atividade 32 - Implementação do CRUD de Receitas
+
+#### Objetivo
+
+Implementar o gerenciamento completo de receitas financeiras vinculadas aos usuários do sistema.
+
+#### Descrição
+
+Foi desenvolvida a estrutura de cadastro e gerenciamento de receitas do FinanceWeb utilizando integração completa entre Flask e PostgreSQL.
+
+Inicialmente foi criada a rota protegida:
+
+/receitas
+
+permitindo acesso apenas a usuários autenticados.
+
+Foi implementado o formulário de cadastro de receitas contendo:
+
+Descrição;
+
+Categoria;
+
+Valor;
+
+Data de Recebimento;
+
+Receita Recorrente;
+
+#### Observações
+
+As categorias foram padronizadas com base na modelagem previamente definida do sistema, garantindo consistência dos dados armazenados.
+
+Após a validação dos dados enviados pelo formulário, foi implementada a persistência das receitas no banco PostgreSQL utilizando associação automática ao usuário autenticado 
+
+através da sessão da aplicação.
+
+Posteriormente foi desenvolvida a listagem das receitas cadastradas, exibindo apenas os registros pertencentes ao usuário logado.
+
+Também foram implementadas funcionalidades de edição e exclusão de receitas, concluindo o primeiro CRUD financeiro completo da aplicação.
+
+Foram adicionados elementos visuais para melhorar a experiência do usuário, incluindo:
+
+Badges de categoria;
+
+Ícones de ações;
+
+Identificação visual de receitas recorrentes;
+
+Organização responsiva da tabela de consultas.
+
+#### Resultado
+
+CRUD completo de receitas implementado com sucesso, permitindo cadastro, consulta, alteração e exclusão de receitas financeiras diretamente pela interface web do FinanceWeb.
+
 ## Situação Atual do Projeto
 
 ### Concluído
@@ -1001,6 +1057,9 @@ desativação de usuários, exclusão protegida e controle de acesso baseado em 
 ✅ Ativação e Desativação de Usuários
 ✅ Controle de Acesso por Perfil
 ✅ Proteção do Último Administrador
+✅ CRUD Completo de Receitas
+✅ Persistência Financeira
+✅ Gestão de Receitas por Usuário
 
 ### Próximas Atividades
 

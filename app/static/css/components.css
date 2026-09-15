@@ -1,18 +1,20 @@
-.btn-navpri {text-decoration: none; background: var(--fw-orange); color: white; border: none; padding: 10px 20px; border-radius: var(--fw-radius); cursor: pointer; margin-right: 10px;min-width: auto; text-align: center; display: inline-block; font-weight: 600; transition: background 0.3s ease;}
+.btn {text-decoration: none; color: white; border: none; padding: 10px 20px; border-radius: var(--fw-radius); cursor: pointer; margin-right: 10px;min-width: 20px; text-align: center; display: inline-block; font-weight: 600; transition: background 0.3s ease;}
 
-.btn-navpri:hover { opacity: .85;}
+.btn:hover {opacity: .85;}
 
-.btn-navsec {text-decoration: none; background: var(--fw-blue); color: white; border: none; padding: 10px 20px; border-radius: var(--fw-radius); cursor: pointer; margin-right: 10px;min-width: auto; text-align: center; display: inline-block; font-weight: 600; transition: background 0.3s ease;}
+.btn-negativo {background: var(--fw-red);}
 
-.btn-navsec:hover { opacity: .85;}
+.btn-positivo {background: var(--fw-green);}
 
-.btn-primary {text-decoration: none;  background: var(--fw-orange); color: white; border: none; padding: 12px 50px; border-radius: var(--fw-radius); cursor: pointer; margin-right: 10px;min-width: 200px; text-align: center; display: inline-block; font-weight: 600; transition: background 0.3s ease;}
+.btn-neutro {background: var(--fw-gray);}
 
-.btn-primary:hover { opacity: .85;}
+.btn-secondary {background: var(--fw-blue);}
 
-.btn-secondary { text-decoration: none; background: var(--fw-blue); color: white; border: none; padding: 12px 50px; border-radius: var(--fw-radius); cursor: pointer; margin-right: 10px;min-width: 200px; text-align: center; display: inline-block; font-weight: 600; transition: background 0.3s ease;}
+.btn-primary {background: var(--fw-orange);}
 
-.btn-secondary:hover { opacity: .85;}
+.btn-navsec {background: var(--fw-blue);}
+
+.btn-navpri {background: var(--fw-orange);}
 
 .input-field { width:100%; max-width: 400px; padding: 12px 16px; border: 1px solid var(--fw-gray); border-radius: var(--fw-radius); font-size: 16px; transition: border-color 0.3s ease;}
 
@@ -43,3 +45,5 @@
 .sucesso { background: #D1FAE5; color: #065F46; border: 1px solid #10B981;}
 
 .erro { background: #FEE2E2; color: #991B1B; border: 1px solid #EF4444;}
+
+.badge-categoria {display: inline-block; padding: 5px 10px; border-radius: 8px; background: #E6F0FF; color: var(--fw-blue); font-size: 0.85rem; font-weight: 600;}

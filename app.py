@@ -9,10 +9,14 @@ app = Flask(
 
 app.secret_key = "financeweb2026"
 
+# ------------------ Rotas ------------------ #
+
+# ------------------ Rota Principal ------------------ #
 @app.route("/")
 def home():
     return render_template("index.html")
 
+# ------------------ Rota de Usuários ------------------ #
 @app.route("/usuarios")
 def usuarios():
     if "usuario_id" not in session:
@@ -72,6 +76,7 @@ def usuarios():
             url_for("home")
         )
 
+# ------------------ Rota para Alterar Status de Administrador ------------------ #
 @app.route("/toggle_admin/<int:id>")
 def toggle_admin(id):
 
@@ -99,7 +104,7 @@ def toggle_admin(id):
 
     try:
 
-        # Impede que o usuário altere o próprio perfil
+
         if id == session.get("usuario_id"):
 
             flash(
@@ -139,9 +144,7 @@ def toggle_admin(id):
                 url_for("usuarios")
             )
 
-        # Se o usuário é administrador,
-        # verificar se é o último administrador do sistema
-        if usuario[0]:  # Se for administrador
+        if usuario[0]: 
             cursor.execute(
                 """
                 SELECT COUNT(*)
@@ -166,7 +169,6 @@ def toggle_admin(id):
                     url_for("usuarios")
                 )
 
-        # ESTA LINHA PRECISA FICAR FORA DO IF
         novo_status = not usuario[0]
 
         cursor.execute(
@@ -208,6 +210,7 @@ def toggle_admin(id):
             url_for("usuarios")
         )
 
+# ------------------ Rota para Excluir Usuário ------------------ #
 @app.route("/excluir_usuario/<int:id>")
 def excluir_usuario(id):
 
@@ -235,8 +238,6 @@ def excluir_usuario(id):
 
     try:
 
-        # Não permite excluir a própria conta
-
         if id == session.get("usuario_id"):
 
             flash(
@@ -250,8 +251,6 @@ def excluir_usuario(id):
 
         con = conectar()
         cursor = con.cursor()
-
-        # Busca o status administrativo do usuário
 
         cursor.execute(
             """
@@ -278,9 +277,7 @@ def excluir_usuario(id):
                 url_for("usuarios")
             )
 
-        # Se for administrador, verifica se é o último
-
-        if usuario[0]:  # Se for administrador
+        if usuario[0]:  
             cursor.execute(
                 """
                 SELECT COUNT(*)
@@ -304,8 +301,6 @@ def excluir_usuario(id):
                 return redirect(
                     url_for("usuarios")
                 )
-
-        # Exclusão
 
         cursor.execute(
             """
@@ -342,6 +337,7 @@ def excluir_usuario(id):
             url_for("usuarios")
         )
 
+# ------------------ Rota para Alternar Status do Usuário ------------------ #
 @app.route("/toggle_usuario/<int:id>")
 def toggle_usuario(id):
 
@@ -435,6 +431,7 @@ def toggle_usuario(id):
             url_for("usuarios")
         )
 
+# ------------------ Rota de Cadastro ------------------ #
 @app.route("/cadastro", methods=["GET", "POST"])
 def cadastro():
 
@@ -498,6 +495,7 @@ def cadastro():
 
     return render_template("cadastro.html")
 
+# ------------------ Rota de Login ------------------ #
 @app.route("/login", methods=["GET", "POST"])
 def login():
 
@@ -567,6 +565,7 @@ def login():
 
     return render_template("login.html")
 
+# ------------------ Rota de Logout ------------------ #
 @app.route("/logout")
 def logout():
 
@@ -581,6 +580,7 @@ def logout():
         url_for("home")
     )
 
+# ------------------ Rota do Dashboard ------------------ #
 @app.route("/dashboard")
 def dashboard():
 
@@ -599,6 +599,344 @@ def dashboard():
         "dashboard.html"
     )
 
+# ------------------ Rota para a Página de Receitas ------------------ #
+@app.route("/receitas", methods=["GET", "POST"])
+def receitas():
+
+    if "usuario_id" not in session:
+
+        flash(
+            "Faça login para acessar suas receitas.",
+            "erro"
+        )
+
+        return redirect(
+            url_for("login")
+        )
+
+    if request.method == "POST":
+
+        descricao = request.form.get("descricao")
+        categoria = request.form.get("categoria")
+        valor = request.form.get("valor")
+        data_recebimento = request.form.get("data_recebimento")
+        observacao = request.form.get("observacao")
+        recorrente = request.form.get("recorrente") == "on"
+
+        try:
+
+            con = conectar()
+            cursor = con.cursor()
+
+            cursor.execute(
+                """
+                INSERT INTO receitas
+                (
+                    usuario_id,
+                    descricao,
+                    categoria,
+                    valor,
+                    data_recebimento,
+                    recorrente,
+                    observacao
+                )
+                VALUES
+                (
+                    %s,
+                    %s,
+                    %s,
+                    %s,
+                    %s,
+                    %s,
+                    %s
+                )
+                """,
+                (
+                    session["usuario_id"],
+                    descricao,
+                    categoria,
+                    valor,
+                    data_recebimento,
+                    recorrente,
+                    observacao
+                )
+            )
+
+            con.commit()
+
+            cursor.close()
+            con.close()
+
+            flash(
+                "Receita cadastrada com sucesso!",
+                "sucesso"
+            )
+
+            return redirect(
+                url_for("receitas")
+            )
+
+        except Exception as erro:
+
+            print("Erro:", erro)
+
+            flash(
+                "Erro ao cadastrar receita.",
+                "erro"
+            )
+
+            return redirect(
+                url_for("receitas")
+            )
+
+    try:
+
+        con = conectar()
+        cursor = con.cursor()
+
+        cursor.execute(
+            """
+            SELECT
+                id,
+                descricao,
+                categoria,
+                valor,
+                data_recebimento,
+                recorrente
+            FROM receitas
+            WHERE usuario_id = %s
+            ORDER BY id DESC
+            """,
+            (
+                session["usuario_id"],
+            )
+        )
+
+        receitas_usuario = cursor.fetchall()
+
+        cursor.close()
+        con.close()
+
+    except Exception as erro:
+
+        print("Erro:", erro)
+
+        receitas_usuario = []
+
+    return render_template(
+        "receitas.html",
+        receitas=receitas_usuario
+    )
+
+# ------------------ Rota para a Página de Editar Receitas ------------------ #  
+@app.route("/editar_receita/<int:id>", methods=["GET", "POST"])
+def editar_receita(id):
+
+    if "usuario_id" not in session:
+
+        flash(
+            "Faça login para acessar esta área.",
+            "erro"
+        )
+
+        return redirect(
+            url_for("login")
+        )
+
+    try:
+
+        con = conectar()
+        cursor = con.cursor()
+
+        if request.method == "POST":
+
+            descricao = request.form.get("descricao")
+            categoria = request.form.get("categoria")
+            valor = request.form.get("valor")
+            data_recebimento = request.form.get("data_recebimento")
+            recorrente = request.form.get("recorrente") == "on"
+            observacao = request.form.get("observacao")
+
+            cursor.execute(
+                """
+                UPDATE receitas
+                SET
+                    descricao = %s,
+                    categoria = %s,
+                    valor = %s,
+                    data_recebimento = %s,
+                    recorrente = %s,
+                    observacao = %s
+                WHERE id = %s
+                """,
+                (
+                    descricao,
+                    categoria,
+                    valor,
+                    data_recebimento,
+                    recorrente,
+                    observacao,
+                    id
+                )
+            )
+
+            con.commit()
+
+            cursor.close()
+            con.close()
+
+            flash(
+                "Receita atualizada com sucesso!",
+                "sucesso"
+            )
+
+            return redirect(
+                url_for("receitas")
+            )
+
+        cursor.execute(
+            """
+            SELECT
+                id,
+                descricao,
+                categoria,
+                valor,
+                data_recebimento,
+                recorrente,
+                observacao
+            FROM receitas
+            WHERE id = %s
+            AND usuario_id = %s
+            """,
+            (
+                id,
+                session["usuario_id"]
+            )
+        )
+
+        receita = cursor.fetchone()
+
+        cursor.close()
+        con.close()
+
+        if not receita:
+
+            flash(
+                "Receita não encontrada.",
+                "erro"
+            )
+
+            return redirect(
+                url_for("receitas")
+            )
+
+        return render_template(
+            "editar_receita.html",
+            receita=receita
+        )
+
+    except Exception as erro:
+
+        print("Erro:", erro)
+
+        flash(
+            "Erro ao editar receita.",
+            "erro"
+        )
+
+        return redirect(
+            url_for("receitas")
+        )
+
+# ------------------ Rota para Excluir Receita ------------------ #
+@app.route("/excluir_receita/<int:id>")
+def excluir_receita(id):
+
+    if "usuario_id" not in session:
+
+        flash(
+            "Faça login para acessar esta área.",
+            "erro"
+        )
+
+        return redirect(
+            url_for("login")
+        )
+
+    try:
+
+        con = conectar()
+        cursor = con.cursor()
+
+        # Verifica se a receita pertence ao usuário logado
+
+        cursor.execute(
+            """
+            SELECT id
+            FROM receitas
+            WHERE id = %s
+            AND usuario_id = %s
+            """,
+            (
+                id,
+                session["usuario_id"]
+            )
+        )
+
+        receita = cursor.fetchone()
+
+        if not receita:
+
+            flash(
+                "Receita não encontrada.",
+                "erro"
+            )
+
+            cursor.close()
+            con.close()
+
+            return redirect(
+                url_for("receitas")
+            )
+
+        # Exclui a receita
+
+        cursor.execute(
+            """
+            DELETE FROM receitas
+            WHERE id = %s
+            """,
+            (id,)
+        )
+
+        con.commit()
+
+        cursor.close()
+        con.close()
+
+        flash(
+            "Receita excluída com sucesso!",
+            "sucesso"
+        )
+
+        return redirect(
+            url_for("receitas")
+        )
+
+    except Exception as erro:
+
+        print("Erro:", erro)
+
+        flash(
+            "Erro ao excluir receita.",
+            "erro"
+        )
+
+        return redirect(
+            url_for("receitas")
+        )
+
+# ------------------ Conexão com o Banco de Dados ------------------ #
 try:
 
     con = conectar()
@@ -611,7 +949,7 @@ except Exception as erro:
 
     print("❌ Erro ao conectar:", erro)
 
-
+# ------------------ Execução da Aplicação Local ------------------ #
 if __name__ == "__main__":
     app.run(
         host="0.0.0.0",

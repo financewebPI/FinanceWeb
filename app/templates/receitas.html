@@ -1,0 +1,240 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="form-card">
+
+    <h1>Receitas</h1>
+
+    <p>
+        Cadastre suas receitas financeiras.
+    </p>
+
+    {% with mensagens = get_flashed_messages(with_categories=true) %}
+
+        {% if mensagens %}
+
+            {% for categoria, mensagem in mensagens %}
+
+                <div class="alert {{ categoria }}">
+                    {{ mensagem }}
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+    {% endwith %}
+
+    <form method="POST">
+
+        <div class="form-group">
+
+            <input
+                type="text"
+                name="descricao"
+                class="input-field"
+                placeholder="Descrição da Receita"
+                required>
+
+        </div>
+
+        <div class="form-group">
+
+        <select
+            name="categoria"
+            class="input-field"
+            required>
+
+            <option value="">
+            Selecione uma categoria
+            </option>
+
+        <option value="Salário">
+            Salário
+        </option>
+
+        <option value="13° Salário">
+            13° Salário
+        </option>
+
+        <option value="PLR">
+            PLR
+        </option>
+
+        <option value="Freelance">
+            Freelance
+        </option>
+
+        <option value="Comissão">
+            Comissão
+        </option>
+
+        <option value="Investimentos">
+            Investimentos
+        </option>
+
+        <option value="Aluguel Recebido">
+            Aluguel Recebido
+        </option>
+
+        <option value="Presentes">
+            Presentes
+        </option>
+
+        <option value="Outros">
+            Outros
+        </option>
+
+    </select>
+
+</div>
+
+
+        <div class="form-group">
+
+            <input
+                type="number"
+                step="0.01"
+                min="0"
+                name="valor"
+                class="input-field"
+                placeholder="Valor da Receita"
+                required>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>
+                Data de Recebimento
+            </label>
+
+            <input
+                type="date"
+                name="data_recebimento"
+                class="input-field"
+                required>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>
+
+                <input
+                    type="checkbox"
+                    name="recorrente">
+
+                Receita Recorrente
+
+            </label>
+
+        </div>
+
+        <div class="form-group">
+
+            <textarea
+                name="observacao"
+                class="input-field"
+                rows="4"
+                placeholder="Observações (Opcional)"></textarea>
+
+        </div>
+
+        <div class="form-actions">
+
+            <button
+                type="submit"
+                class="btn btn-positivo">
+<i class="fa-solid fa-floppy-disk">   Salvar Receita </i>
+                
+
+            </button>
+
+        </div>
+
+    </form>
+
+    
+
+</div>
+
+<div class="table-card" >
+
+<hr>
+
+<h2>Minhas Receitas</h2>
+
+    <div class="table-container">
+
+        <table class="usuarios-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Descrição</th>
+                    <th>Categoria</th>
+                    <th>Valor</th>
+                    <th>Recebimento</th>
+                    <th>Recorrente</th>
+                    <th>Ações</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for receita in receitas %}
+
+                <tr>
+
+                    <td>{{ receita[0] }}</td>
+
+                    <td>{{ receita[1] }}</td>
+
+                    <td> 
+                        <span class="badge-categoria"> {{ receita[2] }} </span>
+                    </td>
+
+                    <td>R$ {{ receita[3] }}</td>
+
+                    <td>{{ receita[4] }}</td>
+
+                    <td>
+
+                        {% if receita[5] %}
+
+                        <button class="btn btn-navsec"><i class="fa-solid fa-rotate"></i> </button>
+
+                        {% else %}
+
+                       <button class="btn btn-navsec"><i class="fa-solid fa-calendar-day"></i></button> 
+
+                        {% endif %}
+
+                    </td>
+
+                    <td>
+
+                        <a href="{{ url_for('editar_receita', id=receita[0]) }}" class="btn btn-navsec fa-solid fa-pen"></a>
+
+                        <a href="{{ url_for('excluir_receita', id=receita[0]) }}" class="btn btn-negativo fa-solid fa-trash"  onclick="return confirm('Deseja realmente excluir esta receita?')"></a>
+                    
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+{% endblock %}

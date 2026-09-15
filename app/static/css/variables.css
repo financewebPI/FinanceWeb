@@ -1,10 +1,13 @@
 :root {
-    --fw-blue: #002F87;
+    --fw-blue: #031C49;
     --fw-blue-light: #1E4DB7;
-    --fw-orange: #FF7A00;
+    --fw-orange: #F76409;
     --fw-light: #F5F7FA;
     --fw-dark: #333333;
     --fw-white: #FFFFFF;
     --fw-radius: 12px;
+    --fw-red: #F03A17;
+    --fw-green: #16C60C;
+    --fw-grey: #90A4AE;
     --fw-shadow:0 10px 25px rgba(0,0,0,.39);
 }

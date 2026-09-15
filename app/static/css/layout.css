@@ -42,7 +42,7 @@ p{ font-size: 1.2rem; color: var(--fw-dark); margin-bottom: 20px;}
    HERO SECTION
 ========================== */
 
-.container { width: 90%; max-width: 1200px; margin: auto; text-align: center; padding-top: 60px; min-height: 10vh;}
+.container { width: 90%; max-width: 1200px; margin: auto; text-align: center; padding-top: 60px; min-height: 10vh; margin-block-end: 100px;}
 
 .benefits {background: white; width: 90%; max-width: 1200px; margin: 50px auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; justify-content: center; flex-wrap: wrap; padding:40px; border-radius: 20px; box-shadow: var(--fw-shadow);box-sizing: border-box;}
 
@@ -80,5 +80,10 @@ p{ font-size: 1.2rem; color: var(--fw-dark); margin-bottom: 20px;}
 
 .usuarios-table tr:nth-child(even) { background: #F8FAFC;}
 
+.table-card {width: 90%; max-width: 1200px; margin: auto; text-align: center; padding-top: 60px; min-height: 10vh; margin-block-end: 100px;}
 
+.table-container { background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); overflow-x: auto; margin-top: 15px; -webkit-overflow-scrolling: touch;}
+   
+   @media (max-width: 768px) {
 
+    .table-container { display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch;box-shadow: var(--fw-shadow); }}
