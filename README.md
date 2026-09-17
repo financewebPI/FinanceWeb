@@ -1,6 +1,6 @@
 # Documentação do FinanceWeb
 
-Esta pasta armazenará toda a documentação do projeto.
+Esta pasta armazenará toda a documentação do projeto FinanceWeb, reunindo informações sobre requisitos, casos de uso, banco de dados, protótipos, testes e deploy.
 
 ## Conteúdo
 
