@@ -936,6 +936,366 @@ def excluir_receita(id):
             url_for("receitas")
         )
 
+# ------------------ Rota para a Página de Despesas ------------------ #
+@app.route("/despesas", methods=["GET", "POST"])
+def despesas():
+
+    if "usuario_id" not in session:
+
+        flash(
+            "Faça login para acessar suas despesas.",
+            "erro"
+        )
+
+        return redirect(
+            url_for("login")
+        )
+
+    # =====================================
+    # CADASTRAR DESPESA
+    # =====================================
+
+    if request.method == "POST":
+
+        descricao = request.form.get("descricao")
+        categoria = request.form.get("categoria")
+        valor = request.form.get("valor")
+        data_lancamento = request.form.get("data_lancamento")
+        data_vencimento = request.form.get("data_vencimento")
+        data_pagamento = request.form.get("data_pagamento")
+        status = request.form.get("status")
+        observacao = request.form.get("observacao")
+
+        try:
+
+            con = conectar()
+            cursor = con.cursor()
+
+            cursor.execute(
+                """
+                INSERT INTO despesas
+                (
+                    usuario_id,
+                    descricao,
+                    categoria,
+                    valor,
+                    data_lancamento,
+                    data_vencimento,
+                    data_pagamento,
+                    status,
+                    observacao
+                )
+                VALUES
+                (
+                    %s,
+                    %s,
+                    %s,
+                    %s,
+                    %s,
+                    %s,
+                    %s,
+                    %s,
+                    %s
+                )
+                """,
+                (
+                    session["usuario_id"],
+                    descricao,
+                    categoria,
+                    valor,
+                    data_lancamento,
+                    data_vencimento if data_vencimento else None,
+                    data_pagamento if data_pagamento else None,
+                    status,
+                    observacao
+                )
+            )
+
+            con.commit()
+
+            cursor.close()
+            con.close()
+
+            flash(
+                "Despesa cadastrada com sucesso!",
+                "sucesso"
+            )
+
+            return redirect(
+                url_for("despesas")
+            )
+
+        except Exception as erro:
+
+            print("Erro:", erro)
+
+            flash(
+                "Erro ao cadastrar despesa.",
+                "erro"
+            )
+
+            return redirect(
+                url_for("despesas")
+            )
+
+    # =====================================
+    # LISTAR DESPESAS
+    # =====================================
+
+    try:
+
+        con = conectar()
+        cursor = con.cursor()
+
+        cursor.execute(
+            """
+            SELECT
+                id,
+                descricao,
+                categoria,
+                valor,
+                data_vencimento,
+                status
+            FROM despesas
+            WHERE usuario_id = %s
+            ORDER BY id DESC
+            """,
+            (
+                session["usuario_id"],
+            )
+        )
+
+        despesas_usuario = cursor.fetchall()
+
+        cursor.close()
+        con.close()
+
+    except Exception as erro:
+
+        print("Erro:", erro)
+
+        despesas_usuario = []
+
+    return render_template(
+        "despesas.html",
+        despesas=despesas_usuario
+    )
+
+# ------------------ Rota para editar Despesas ------------------ #
+
+@app.route("/editar_despesa/<int:id>", methods=["GET", "POST"])
+def editar_despesa(id):
+
+    if "usuario_id" not in session:
+
+        flash(
+            "Faça login para acessar esta área.",
+            "erro"
+        )
+
+        return redirect(
+            url_for("login")
+        )
+
+    try:
+
+        con = conectar()
+        cursor = con.cursor()
+
+        if request.method == "POST":
+
+            descricao = request.form.get("descricao")
+            categoria = request.form.get("categoria")
+            valor = request.form.get("valor")
+            data_lancamento = request.form.get("data_lancamento")
+            data_vencimento = request.form.get("data_vencimento")
+            data_pagamento = request.form.get("data_pagamento")
+            status = request.form.get("status")
+            observacao = request.form.get("observacao")
+
+            cursor.execute(
+                """
+                UPDATE despesas
+                SET
+                    descricao = %s,
+                    categoria = %s,
+                    valor = %s,
+                    data_lancamento = %s,
+                    data_vencimento = %s,
+                    data_pagamento = %s,
+                    status = %s,
+                    observacao = %s
+                WHERE id = %s
+                """
+                ,
+                (
+                    descricao,
+                    categoria,
+                    valor,
+                    data_lancamento,
+                    data_vencimento if data_vencimento else None,
+                    data_pagamento if data_pagamento else None,
+                    status,
+                    observacao,
+                    id
+                )
+            )
+
+            con.commit()
+
+            cursor.close()
+            con.close()
+
+            flash(
+                "Despesa atualizada com sucesso!",
+                "sucesso"
+            )
+
+            return redirect(
+                url_for("despesas")
+            )
+
+        cursor.execute(
+            """
+            SELECT
+                id,
+                descricao,
+                categoria,
+                valor,
+                data_lancamento,
+                data_vencimento,
+                data_pagamento,
+                status,
+                observacao
+            FROM despesas
+            WHERE id = %s
+            AND usuario_id = %s
+            """,
+            (
+                id,
+                session["usuario_id"]
+            )
+        )
+
+        despesa = cursor.fetchone()
+
+        cursor.close()
+        con.close()
+
+        if not despesa:
+
+            flash(
+                "Despesa não encontrada.",
+                "erro"
+            )
+
+            return redirect(
+                url_for("despesas")
+            )
+
+        return render_template(
+            "editar_despesa.html",
+            despesa=despesa
+        )
+
+    except Exception as erro:
+
+        print("Erro:", erro)
+
+        flash(
+            "Erro ao editar despesa.",
+            "erro"
+        )
+
+        return redirect(
+            url_for("despesas")
+        )
+
+# ------------------ Rota para excluir despesas ------------------ #
+
+@app.route("/excluir_despesa/<int:id>")
+def excluir_despesa(id):
+
+    if "usuario_id" not in session:
+
+        flash(
+            "Faça login para acessar esta área.",
+            "erro"
+        )
+
+        return redirect(
+            url_for("login")
+        )
+
+    try:
+
+        con = conectar()
+        cursor = con.cursor()
+
+        cursor.execute(
+            """
+            SELECT id
+            FROM despesas
+            WHERE id = %s
+            AND usuario_id = %s
+            """,
+            (
+                id,
+                session["usuario_id"]
+            )
+        )
+
+        despesa = cursor.fetchone()
+
+        if not despesa:
+
+            flash(
+                "Despesa não encontrada.",
+                "erro"
+            )
+
+            cursor.close()
+            con.close()
+
+            return redirect(
+                url_for("despesas")
+            )
+
+        cursor.execute(
+            """
+            DELETE FROM despesas
+            WHERE id = %s
+            """,
+            (id,)
+        )
+
+        con.commit()
+
+        cursor.close()
+        con.close()
+
+        flash(
+            "Despesa excluída com sucesso!",
+            "sucesso"
+        )
+
+        return redirect(
+            url_for("despesas")
+        )
+
+    except Exception as erro:
+
+        print("Erro:", erro)
+
+        flash(
+            "Erro ao excluir despesa.",
+            "erro"
+        )
+
+        return redirect(
+            url_for("despesas")
+        )    
+
 # ------------------ Conexão com o Banco de Dados ------------------ #
 try:
 

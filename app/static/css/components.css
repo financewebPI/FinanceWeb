@@ -47,3 +47,71 @@
 .erro { background: #FEE2E2; color: #991B1B; border: 1px solid #EF4444;}
 
 .badge-categoria {display: inline-block; padding: 5px 10px; border-radius: 8px; background: #E6F0FF; color: var(--fw-blue); font-size: 0.85rem; font-weight: 600;}
+
+.badge-pendente {
+
+    display: inline-block;
+
+    padding: 4px 8px;
+
+    border-radius: 6px;
+
+    background: #FFF3CD;
+
+    color: #856404;
+
+    font-size: 0.85rem;
+
+    font-weight: 600;
+}
+
+.badge-paga {
+
+    display: inline-block;
+
+    padding: 4px 8px;
+
+    border-radius: 6px;
+
+    background: #D4EDDA;
+
+    color: #155724;
+
+    font-size: 0.85rem;
+
+    font-weight: 600;
+}
+
+.badge-atrasada {
+
+    display: inline-block;
+
+    padding: 4px 8px;
+
+    border-radius: 6px;
+
+    background: #F8D7DA;
+
+    color: #721C24;
+
+    font-size: 0.85rem;
+
+    font-weight: 600;
+}
+
+.badge-cancelada {
+
+    display: inline-block;
+
+    padding: 4px 8px;
+
+    border-radius: 6px;
+
+    background: #E2E3E5;
+
+    color: #383D41;
+
+    font-size: 0.85rem;
+
+    font-weight: 600;
+}

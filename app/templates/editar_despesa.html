@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="form-card">
+
+    <h1>Editar Despesa</h1>
+
+    <p>
+        Atualize os dados da despesa.
+    </p>
+
+    <form method="POST">
+
+        <div class="form-group">
+
+            <input
+                type="text"
+                name="descricao"
+                class="input-field"
+                value="{{ despesa[1] }}"
+                required>
+
+        </div>
+
+        <div class="form-group">
+
+            <select
+                name="categoria"
+                class="input-field"
+                required>
+
+                <option value="Moradia" {% if despesa[2] == "Moradia" %}selected{% endif %}>Moradia</option>
+
+                <option value="Alimentação" {% if despesa[2] == "Alimentação" %}selected{% endif %}>Alimentação</option>
+
+                <option value="Transporte" {% if despesa[2] == "Transporte" %}selected{% endif %}>Transporte</option>
+
+                <option value="Saúde" {% if despesa[2] == "Saúde" %}selected{% endif %}>Saúde</option>
+
+                <option value="Educação" {% if despesa[2] == "Educação" %}selected{% endif %}>Educação</option>
+
+                <option value="Lazer" {% if despesa[2] == "Lazer" %}selected{% endif %}>Lazer</option>
+
+                <option value="Internet" {% if despesa[2] == "Internet" %}selected{% endif %}>Internet</option>
+
+                <option value="Telefone" {% if despesa[2] == "Telefone" %}selected{% endif %}>Telefone</option>
+
+                <option value="Energia" {% if despesa[2] == "Energia" %}selected{% endif %}>Energia</option>
+
+                <option value="Água" {% if despesa[2] == "Água" %}selected{% endif %}>Água</option>
+
+                <option value="Impostos" {% if despesa[2] == "Impostos" %}selected{% endif %}>Impostos</option>
+
+                <option value="Investimentos" {% if despesa[2] == "Investimentos" %}selected{% endif %}>Investimentos</option>
+
+                <option value="Outros" {% if despesa[2] == "Outros" %}selected{% endif %}>Outros</option>
+
+            </select>
+
+        </div>
+
+        <div class="form-group">
+
+            <input
+                type="number"
+                step="0.01"
+                name="valor"
+                class="input-field"
+                value="{{ despesa[3] }}"
+                required>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Data de Lançamento</label>
+
+            <input
+                type="date"
+                name="data_lancamento"
+                class="input-field"
+                value="{{ despesa[4] }}"
+                required>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Data de Vencimento</label>
+
+            <input
+                type="date"
+                name="data_vencimento"
+                class="input-field"
+                value="{{ despesa[5] if despesa[5] else '' }}">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Data de Pagamento</label>
+
+            <input
+                type="date"
+                name="data_pagamento"
+                class="input-field"
+                value="{{ despesa[6] if despesa[6] else '' }}">
+
+        </div>
+
+        <div class="form-group">
+
+            <select
+                name="status"
+                class="input-field">
+
+                <option value="Pendente" {% if despesa[7] == "Pendente" %}selected{% endif %}>Pendente</option>
+
+                <option value="Paga" {% if despesa[7] == "Paga" %}selected{% endif %}>Paga</option>
+
+                <option value="Atrasada" {% if despesa[7] == "Atrasada" %}selected{% endif %}>Atrasada</option>
+
+                <option value="Cancelada" {% if despesa[7] == "Cancelada" %}selected{% endif %}>Cancelada</option>
+
+            </select>
+
+        </div>
+
+        <div class="form-group">
+
+            <textarea
+                name="observacao"
+                class="input-field"
+                rows="4">{{ despesa[8] if despesa[8] else '' }}</textarea>
+
+        </div>
+
+        <div class="form-actions">
+
+            <button
+                type="submit"
+                class="btn btn-positivo">
+
+                <i class="fa-solid fa-floppy-disk"></i>
+
+                Salvar Alterações
+
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

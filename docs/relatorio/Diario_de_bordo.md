@@ -1013,6 +1013,82 @@ Organização responsiva da tabela de consultas.
 
 CRUD completo de receitas implementado com sucesso, permitindo cadastro, consulta, alteração e exclusão de receitas financeiras diretamente pela interface web do FinanceWeb.
 
+## Data: 29/09/2026
+
+### Atividade 33 - Implementação do CRUD de Despesas
+
+#### Objetivo
+
+Implementar o gerenciamento completo de despesas financeiras vinculadas aos usuários autenticados do sistema FinanceWeb.
+
+#### Descrição
+
+Foi desenvolvida a estrutura completa para cadastro, consulta, atualização e exclusão de despesas financeiras utilizando integração entre Flask e PostgreSQL.
+
+Inicialmente foi criada a rota protegida:
+
+/despesas
+
+permitindo acesso apenas a usuários autenticados.
+
+Foi desenvolvido o formulário de cadastro de despesas contendo os seguintes campos:
+
+Descrição;
+
+Categoria;
+
+Valor;
+
+Data de Lançamento;
+
+Data de Vencimento;
+
+Data de Pagamento;
+
+Status;
+
+#### Observação.
+
+As categorias de despesas foram padronizadas de acordo com a modelagem previamente definida do sistema, garantindo consistência e organização das informações armazenadas.
+
+Também foram definidos estados para o gerenciamento do ciclo de vida das despesas:
+
+Pendente;
+
+Paga;
+
+Atrasada;
+
+Cancelada.
+
+Após o recebimento dos dados enviados pelo formulário, foi implementada a persistência automática das despesas no PostgreSQL, vinculando cada registro ao usuário autenticado 
+
+através das informações armazenadas em sessão.
+
+Em seguida foi desenvolvida a listagem das despesas cadastradas, exibindo exclusivamente os registros pertencentes ao usuário autenticado.
+
+Para melhorar a experiência de utilização foram implementados componentes visuais padronizados, incluindo:
+
+Badges para categorias;
+
+Badges coloridos para status;
+
+Ícones utilizando Font Awesome;
+
+Tabelas responsivas;
+
+Confirmação visual para exclusão de registros.
+
+Posteriormente foram implementadas as funcionalidades de edição e exclusão das despesas, concluindo o CRUD completo da entidade.
+
+Durante o desenvolvimento foram reaproveitados padrões arquiteturais estabelecidos anteriormente no módulo de receitas, contribuindo para a padronização visual e estrutural da 
+
+aplicação.
+
+#### Resultado
+
+CRUD completo de despesas implementado com sucesso, permitindo cadastro, consulta, edição e exclusão de despesas financeiras diretamente pela interface web do FinanceWeb.
+
 ## Situação Atual do Projeto
 
 ### Concluído
@@ -1060,16 +1136,18 @@ CRUD completo de receitas implementado com sucesso, permitindo cadastro, consult
 ✅ CRUD Completo de Receitas
 ✅ Persistência Financeira
 ✅ Gestão de Receitas por Usuário
+✅ CRUD Completo de Despesas
+✅ Persistência de Despesas
+✅ Gestão de Despesas por Usuário
+✅ Controle de Status de Despesas
 
 ### Próximas Atividades
 
 🔄 Implementar Recuperação de Senha
 🔄 Estruturar Dashboard Financeiro
-🔄 Cadastro de Receitas
-🔄 Cadastro de Despesas
 🔄 Cadastro de Metas
 🔄 Integrar AwesomeAPI
-🔄 Realizar deploy no Render
+🔄 Realizar Deploy no Render
 
 # Considerações Finais
 

@@ -1,0 +1,292 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="form-card">
+
+    <h1>Despesas</h1>
+
+    <p>
+        Cadastre suas despesas financeiras.
+    </p>
+
+    {% with mensagens = get_flashed_messages(with_categories=true) %}
+
+        {% if mensagens %}
+
+            {% for categoria, mensagem in mensagens %}
+
+                <div class="alert {{ categoria }}">
+                    {{ mensagem }}
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+    {% endwith %}
+
+    <form method="POST">
+
+        <div class="form-group">
+
+            <input
+                type="text"
+                name="descricao"
+                class="input-field"
+                placeholder="Descrição da Despesa"
+                required>
+
+        </div>
+
+        <div class="form-group">
+
+            <select
+                name="categoria"
+                class="input-field"
+                required>
+
+                <option value="">
+                    Selecione uma categoria
+                </option>
+
+                <option value="Moradia">Moradia</option>
+                <option value="Alimentação">Alimentação</option>
+                <option value="Transporte">Transporte</option>
+                <option value="Saúde">Saúde</option>
+                <option value="Educação">Educação</option>
+                <option value="Lazer">Lazer</option>
+                <option value="Internet">Internet</option>
+                <option value="Telefone">Telefone</option>
+                <option value="Energia">Energia</option>
+                <option value="Água">Água</option>
+                <option value="Impostos">Impostos</option>
+                <option value="Investimentos">Investimentos</option>
+                <option value="Outros">Outros</option>
+
+            </select>
+
+        </div>
+
+        <div class="form-group">
+
+            <input
+                type="number"
+                step="0.01"
+                min="0"
+                name="valor"
+                class="input-field"
+                placeholder="Valor da Despesa"
+                required>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>
+                Data de Lançamento
+            </label>
+
+            <input
+                type="date"
+                name="data_lancamento"
+                class="input-field"
+                required>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>
+                Data de Vencimento
+            </label>
+
+            <input
+                type="date"
+                name="data_vencimento"
+                class="input-field">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>
+                Data de Pagamento
+            </label>
+
+            <input
+                type="date"
+                name="data_pagamento"
+                class="input-field">
+
+        </div>
+
+        <div class="form-group">
+
+            <select
+                name="status"
+                class="input-field">
+
+                <option value="Pendente">
+                    Pendente
+                </option>
+
+                <option value="Paga">
+                    Paga
+                </option>
+
+                <option value="Atrasada">
+                    Atrasada
+                </option>
+
+                <option value="Cancelada">
+                    Cancelada
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="form-group">
+
+            <textarea
+                name="observacao"
+                class="input-field"
+                rows="4"
+                placeholder="Observações (Opcional)"></textarea>
+
+        </div>
+
+        <div class="form-actions">
+
+            <button
+                type="submit"
+                class="btn btn-positivo">
+
+                <i class="fa-solid fa-floppy-disk"></i>
+
+                Salvar Despesa
+
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+<div class="table-card">
+
+    <hr>
+
+    <h2>Minhas Despesas</h2>
+
+    <div class="table-container">
+
+        <table class="usuarios-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Descrição</th>
+                    <th>Categoria</th>
+                    <th>Valor</th>
+                    <th>Vencimento</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for despesa in despesas %}
+
+                <tr>
+
+                    <td>{{ despesa[0] }}</td>
+
+                    <td>{{ despesa[1] }}</td>
+
+                    <td>
+
+                        <span class="badge-categoria">
+
+                            {{ despesa[2] }}
+
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        R$ {{ despesa[3] }}
+
+                    </td>
+
+                    <td>
+
+                        {{ despesa[4] }}
+
+                    </td>
+
+                    <td>
+
+                        {% if despesa[5] == "Paga" %}
+
+                            <span class="badge-paga">
+
+                                Paga
+
+                            </span>
+
+                        {% elif despesa[5] == "Pendente" %}
+
+                            <span class="badge-pendente">
+
+                                Pendente
+
+                            </span>
+
+                        {% elif despesa[5] == "Atrasada" %}
+
+                            <span class="badge-atrasada">
+
+                                Atrasada
+
+                            </span>
+
+                        {% else %}
+
+                            <span class="badge-cancelada">
+
+                                Cancelada
+
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+                    <td>
+
+                        <a href="{{ url_for('editar_despesa', id=despesa[0]) }}" class="btn btn-navsec fa-solid fa-pen"></a>
+
+                        <a href="{{ url_for('excluir_despesa', id=despesa[0]) }}" class="btn btn-negativo fa-solid fa-trash"  onclick="return confirm('Deseja realmente excluir esta receita?')"></a>
+                    
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}
