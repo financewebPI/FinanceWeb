@@ -4,22 +4,78 @@
 
 <div class="container">
 
-    <h1>
-        Dashboard Financeiro
-    </h1>
+    <h1>Dashboard Financeiro</h1>
 
     <p>
-    Bem-vindo,
-    {{ session["usuario_nome"] }}
-</p>
+        Bem-vindo, {{ session["usuario_nome"] }}
+    </p>
 
-<div class="hero-buttons">
+</div>
 
- <a href="{{ url_for('receitas') }}" < i class="btn btn-navpri fa-solid fa-money-bill-wave"> </i> Receitas </a>
- <a href="{{ url_for('despesas') }}" < i class="btn btn-navpri fa-solid fa-credit-card"></i> Despesas </a>   
- <a href="{{ url_for('logout') }}" < i class="btn btn-navsec fa-solid fa-right-from-bracket"> </i> Sair </a>
- 
-</div>
-</div>
+<section class="benefits">
+
+    <div class="card">
+    <a href="{{ url_for('receitas') }}" 
+    
+        < i class="btn btn-navpri fa-solid fa-money-bill-wave"> 
+            <br></br>
+                RECEITAS              
+        </i>
+    </a> 
+    
+    <br></br>
+    
+    <p> Cadastre e acompanhe suas entradas financeiras.</p>
+    
+    </div>
+
+    <div class="card">
+    <a href="{{ url_for('despesas') }}" 
+    
+        < i class="btn btn-navpri fa-solid fa-credit-card">     
+                
+            <br></br>
+             Despesas
+        </i>
+    </a>
+    
+    <br></br>
+
+        <p> Gerencie gastos, vencimentos e pagamentos.</p>
+        
+    </div>
+    
+    <div class="card">
+    <a href="{{ url_for('metas') }}"    
+    
+        < i class="btn btn-navpri fa-solid fa-bullseye">
+
+         <br></br>
+            Metas
+        </i>
+    </a>
+
+    <br></br>
+            <p>  Acompanhe seus objetivos financeiros.</p>
+    </div>        
+
+    {% if session.get("usuario_admin") %}
+
+    <div class="card">
+    <a href="{{ url_for('usuarios') }}"  
+        
+        < i class="btn btn-navsec fa-solid fa-users">
+
+         <br></br>
+            Usuários
+         
+        </i>
+    </a>
+    <br></br>    
+             <p> Gerencie contas e permissões do sistema.</p>       
+    </div>
+    {% endif %}
+
+</section>
 
 {% endblock %}

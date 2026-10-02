@@ -1295,6 +1295,366 @@ def excluir_despesa(id):
         return redirect(
             url_for("despesas")
         )    
+# ------------------ Rota para a Página de Metas ------------------ #
+@app.route("/metas", methods=["GET", "POST"])
+def metas():
+
+    if "usuario_id" not in session:
+
+        flash(
+            "Faça login para acessar suas metas.",
+            "erro"
+        )
+
+        return redirect(
+            url_for("login")
+        )
+
+    # =====================================
+    # CADASTRAR META
+    # =====================================
+
+    if request.method == "POST":
+
+        titulo = request.form.get("titulo")
+        descricao = request.form.get("descricao")
+        valor_meta = request.form.get("valor_meta")
+        valor_atual = request.form.get("valor_atual")
+        data_inicio = request.form.get("data_inicio")
+        data_limite = request.form.get("data_limite")
+        status = request.form.get("status")
+
+        try:
+
+            con = conectar()
+            cursor = con.cursor()
+
+            cursor.execute(
+                """
+                INSERT INTO metas
+                (
+                    usuario_id,
+                    titulo,
+                    descricao,
+                    valor_meta,
+                    valor_atual,
+                    data_inicio,
+                    data_limite,
+                    status
+                )
+                VALUES
+                (
+                    %s,
+                    %s,
+                    %s,
+                    %s,
+                    %s,
+                    %s,
+                    %s,
+                    %s
+                )
+                """,
+                (
+                    session["usuario_id"],
+                    titulo,
+                    descricao,
+                    valor_meta,
+                    valor_atual,
+                    data_inicio if data_inicio else None,
+                    data_limite if data_limite else None,
+                    status
+                )
+            )
+
+            con.commit()
+
+            cursor.close()
+            con.close()
+
+            flash(
+                "Meta cadastrada com sucesso!",
+                "sucesso"
+            )
+
+            return redirect(
+                url_for("metas")
+            )
+
+        except Exception as erro:
+
+            print("Erro:", erro)
+
+            flash(
+                "Erro ao cadastrar meta.",
+                "erro"
+            )
+
+            return redirect(
+                url_for("metas")
+            )
+
+    # =====================================
+    # LISTAR METAS
+    # =====================================
+
+    try:
+
+        con = conectar()
+        cursor = con.cursor()
+
+        cursor.execute(
+            """
+            SELECT
+                id,
+                titulo,
+                valor_meta,
+                valor_atual,
+                data_limite,
+                status
+            FROM metas
+            WHERE usuario_id = %s
+            ORDER BY id DESC
+            """,
+            (
+                session["usuario_id"],
+            )
+        )
+
+        metas_usuario = cursor.fetchall()
+
+        cursor.close()
+        con.close()
+
+    except Exception as erro:
+
+        print("Erro:", erro)
+
+        metas_usuario = []
+
+    return render_template(
+        "metas.html",
+        metas=metas_usuario
+    )
+
+
+# ------------------ Rota para Editar Metas ------------------ #
+@app.route("/editar_meta/<int:id>", methods=["GET", "POST"])
+def editar_meta(id):
+
+    if "usuario_id" not in session:
+
+        flash(
+            "Faça login para acessar esta área.",
+            "erro"
+        )
+
+        return redirect(
+            url_for("login")
+        )
+
+    try:
+
+        con = conectar()
+        cursor = con.cursor()
+
+        # ==========================
+        # SALVAR ALTERAÇÕES
+        # ==========================
+
+        if request.method == "POST":
+
+            titulo = request.form.get("titulo")
+            descricao = request.form.get("descricao")
+            valor_meta = request.form.get("valor_meta")
+            valor_atual = request.form.get("valor_atual")
+            data_inicio = request.form.get("data_inicio")
+            data_limite = request.form.get("data_limite")
+            status = request.form.get("status")
+
+            cursor.execute(
+                """
+                UPDATE metas
+                SET
+                    titulo = %s,
+                    descricao = %s,
+                    valor_meta = %s,
+                    valor_atual = %s,
+                    data_inicio = %s,
+                    data_limite = %s,
+                    status = %s
+                WHERE id = %s
+                """,
+                (
+                    titulo,
+                    descricao,
+                    valor_meta,
+                    valor_atual,
+                    data_inicio if data_inicio else None,
+                    data_limite if data_limite else None,
+                    status,
+                    id
+                )
+            )
+
+            con.commit()
+
+            cursor.close()
+            con.close()
+
+            flash(
+                "Meta atualizada com sucesso!",
+                "sucesso"
+            )
+
+            return redirect(
+                url_for("metas")
+            )
+
+        # ==========================
+        # CARREGAR META
+        # ==========================
+
+        cursor.execute(
+            """
+            SELECT
+                id,
+                titulo,
+                descricao,
+                valor_meta,
+                valor_atual,
+                data_inicio,
+                data_limite,
+                status
+            FROM metas
+            WHERE id = %s
+            AND usuario_id = %s
+            """,
+            (
+                id,
+                session["usuario_id"]
+            )
+        )
+
+        meta = cursor.fetchone()
+
+        cursor.close()
+        con.close()
+
+        if not meta:
+
+            flash(
+                "Meta não encontrada.",
+                "erro"
+            )
+
+            return redirect(
+                url_for("metas")
+            )
+
+        return render_template(
+            "editar_meta.html",
+            meta=meta
+        )
+
+    except Exception as erro:
+
+        print("Erro:", erro)
+
+        flash(
+            "Erro ao editar meta.",
+            "erro"
+        )
+
+        return redirect(
+            url_for("metas")
+        )
+# ------------------ Rota para Excluir Meta ------------------ #
+@app.route("/excluir_meta/<int:id>")
+def excluir_meta(id):
+
+    if "usuario_id" not in session:
+
+        flash(
+            "Faça login para acessar esta área.",
+            "erro"
+        )
+
+        return redirect(
+            url_for("login")
+        )
+
+    try:
+
+        con = conectar()
+        cursor = con.cursor()
+
+        # Verifica se a meta pertence ao usuário logado
+
+        cursor.execute(
+            """
+            SELECT id
+            FROM metas
+            WHERE id = %s
+            AND usuario_id = %s
+            """,
+            (
+                id,
+                session["usuario_id"]
+            )
+        )
+
+        meta = cursor.fetchone()
+
+        if not meta:
+
+            flash(
+                "Meta não encontrada.",
+                "erro"
+            )
+
+            cursor.close()
+            con.close()
+
+            return redirect(
+                url_for("metas")
+            )
+
+        # Exclusão
+
+        cursor.execute(
+            """
+            DELETE FROM metas
+            WHERE id = %s
+            """,
+            (id,)
+        )
+
+        con.commit()
+
+        cursor.close()
+        con.close()
+
+        flash(
+            "Meta excluída com sucesso!",
+            "sucesso"
+        )
+
+        return redirect(
+            url_for("metas")
+        )
+
+    except Exception as erro:
+
+        print("Erro:", erro)
+
+        flash(
+            "Erro ao excluir meta.",
+            "erro"
+        )
+
+        return redirect(
+            url_for("metas")
+        )
 
 # ------------------ Conexão com o Banco de Dados ------------------ #
 try:

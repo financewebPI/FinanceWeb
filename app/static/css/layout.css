@@ -10,7 +10,11 @@ h2 { font-size: 2.5rem; color: var(--fw-blue); margin-bottom: 15px;}
 
 p{ font-size: 1.2rem; color: var(--fw-dark); margin-bottom: 20px;}
 
-   @media (max-width: 768px) { p { font-size: 1rem;}}
+   @media (max-width: 768px) { p { font-size: 1rem;}} 
+
+h3{ font-size: 1.2rem; color: var(--fw-dark); margin-bottom: 20px;}
+
+   @media (max-width: 768px) { p { font-size: 1rem;}}   
 
 
 /* ==========================

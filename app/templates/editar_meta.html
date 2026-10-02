@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="form-card">
+
+    <h1>Editar Meta</h1>
+
+    <p>
+        Atualize os dados da meta financeira.
+    </p>
+
+    <form method="POST">
+
+        <div class="form-group">
+
+            <input
+                type="text"
+                name="titulo"
+                class="input-field"
+                value="{{ meta[1] }}"
+                required>
+
+        </div>
+
+        <div class="form-group">
+
+            <textarea
+                name="descricao"
+                class="input-field"
+                rows="4">{{ meta[2] }}</textarea>
+
+        </div>
+
+        <div class="form-group">
+
+            <input
+                type="number"
+                step="0.01"
+                min="0"
+                name="valor_meta"
+                class="input-field"
+                value="{{ meta[3] }}"
+                required>
+
+        </div>
+
+        <div class="form-group">
+
+            <input
+                type="number"
+                step="0.01"
+                min="0"
+                name="valor_atual"
+                class="input-field"
+                value="{{ meta[4] }}"
+                required>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>
+                Data de Início
+            </label>
+
+            <input
+                type="date"
+                name="data_inicio"
+                class="input-field"
+                value="{{ meta[5] if meta[5] else '' }}">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>
+                Data Limite
+            </label>
+
+            <input
+                type="date"
+                name="data_limite"
+                class="input-field"
+                value="{{ meta[6] if meta[6] else '' }}">
+
+        </div>
+
+        <div class="form-group">
+
+            <select
+                name="status"
+                class="input-field">
+
+                <option value="Em andamento"
+                    {% if meta[7] == "Em andamento" %}selected{% endif %}>
+                    Em andamento
+                </option>
+
+                <option value="Concluída"
+                    {% if meta[7] == "Concluída" %}selected{% endif %}>
+                    Concluída
+                </option>
+
+                <option value="Cancelada"
+                    {% if meta[7] == "Cancelada" %}selected{% endif %}>
+                    Cancelada
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="form-actions">
+
+            <button
+                type="submit"
+                class="btn btn-positivo">
+
+                <i class="fa-solid fa-floppy-disk"></i>
+
+                Salvar Alterações
+
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

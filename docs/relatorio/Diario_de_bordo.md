@@ -1089,6 +1089,127 @@ aplicação.
 
 CRUD completo de despesas implementado com sucesso, permitindo cadastro, consulta, edição e exclusão de despesas financeiras diretamente pela interface web do FinanceWeb.
 
+## Data: 02/10/2026
+
+### Atividade 34 - Implementação do CRUD de Metas Financeiras
+
+#### Objetivo
+
+Implementar o gerenciamento completo de metas financeiras vinculadas aos usuários autenticados do sistema FinanceWeb.
+
+#### Descrição
+
+Foi desenvolvida a estrutura completa para cadastro, consulta, atualização e exclusão de metas financeiras utilizando integração entre Flask e PostgreSQL.
+
+Inicialmente foi criada a rota protegida:
+
+/metas
+
+permitindo acesso apenas a usuários autenticados.
+
+Foi desenvolvido um formulário para cadastro de metas contendo os seguintes campos:
+
+Título;
+
+Descrição;
+
+Valor da Meta;
+
+Valor Atual;
+
+Data de Início;
+
+Data Limite;
+
+Status.
+
+Também foram definidos os estados possíveis para acompanhamento das metas:
+
+Em andamento;
+
+Concluída;
+
+Cancelada.
+
+Após o recebimento dos dados enviados pelo formulário, foi implementada a persistência automática das metas no PostgreSQL, associando cada registro ao usuário autenticado por 
+
+meio das informações armazenadas em sessão.
+
+Posteriormente foi desenvolvida a listagem das metas cadastradas, exibindo exclusivamente os registros pertencentes ao usuário autenticado.
+
+A tela passou a apresentar indicadores de progresso calculados automaticamente a partir dos valores cadastrados para cada meta.
+
+O percentual de evolução é calculado utilizando os campos:
+
+valor_meta
+ 
+valor_atual
+
+permitindo acompanhamento contínuo da evolução dos objetivos financeiros.
+
+Também foram implementadas funcionalidades de edição e exclusão de metas diretamente pela interface da aplicação.
+
+Durante o desenvolvimento foram reaproveitados componentes visuais e arquiteturais previamente construídos nos módulos de receitas e despesas, garantindo padronização visual e 
+
+consistência de navegação.
+
+Foram utilizados:
+
+Badges para status;
+
+Ícones Font Awesome;
+
+Tabelas responsivas;
+
+Confirmação para exclusão de registros;
+
+Mensagens de feedback utilizando flash().
+
+#### Observação.
+
+Os estados das metas financeiras foram padronizados de acordo com a modelagem previamente definida do sistema, garantindo consistência das informações armazenadas e permitindo 
+acompanhamento adequado dos objetivos financeiros cadastrados.
+
+Os seguintes estados foram implementados:
+
+Em andamento;
+
+Concluída;
+
+Cancelada.
+
+Durante o desenvolvimento foi implementado o cálculo automático de progresso das metas utilizando os campos:
+
+valor_meta
+ 
+valor_atual
+
+permitindo que o sistema apresente ao usuário o percentual de evolução de cada objetivo financeiro.
+
+Também foram adicionados componentes visuais para melhorar a experiência de utilização, incluindo:
+
+Badges para status;
+
+Ícones utilizando Font Awesome;
+
+Tabelas responsivas;
+
+Indicador percentual de progresso;
+
+Confirmação visual para exclusão de registros.
+
+Posteriormente foram implementadas as funcionalidades de edição e exclusão de metas, concluindo o CRUD completo da entidade.
+
+Durante o desenvolvimento foram reaproveitados padrões arquiteturais e componentes visuais previamente construídos nos módulos de receitas e despesas, contribuindo para a 
+
+padronização visual, consistência da navegação e uniformidade da experiência do usuário em toda a aplicação.
+
+#### Resultado
+
+CRUD completo de metas financeiras implementado com sucesso, permitindo cadastro, consulta, atualização e exclusão de metas diretamente pela interface web do FinanceWeb, 
+
+incluindo cálculo automático de progresso dos objetivos cadastrados.
+
 ## Situação Atual do Projeto
 
 ### Concluído
@@ -1140,12 +1261,14 @@ CRUD completo de despesas implementado com sucesso, permitindo cadastro, consult
 ✅ Persistência de Despesas
 ✅ Gestão de Despesas por Usuário
 ✅ Controle de Status de Despesas
+✅ CRUD Completo de Metas
+✅ Gestão de Metas Financeiras
+✅ Controle de Progresso das Metas
 
 ### Próximas Atividades
 
 🔄 Implementar Recuperação de Senha
 🔄 Estruturar Dashboard Financeiro
-🔄 Cadastro de Metas
 🔄 Integrar AwesomeAPI
 🔄 Realizar Deploy no Render
 

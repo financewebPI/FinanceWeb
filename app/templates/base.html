@@ -25,37 +25,39 @@
 
             <div class="navbar-container">
 
-                <a href="{{ url_for('home') }}">
-
-                    <img src="{{ url_for('static', filename='img/logo_horizontal_azul_p.png') }}" alt="FinanceWeb" class="navbar-logo">
-
-                </a>
+                <img src="{{ url_for('static', filename='img/logo_horizontal_azul_p.png') }}" alt="FinanceWeb" class="navbar-logo">
 
                 <div class="navbar-menu" >         
 
-                    {% if session.get("usuario_admin") %}
-
-                        <a href="{{ url_for('usuarios') }}" class="btn btn-navsec fa-solid fa-users"> Usuários </a>
-                        
-                    {% endif %}
+                    
 
                     {% if session.get("usuario_id") %}               
 
-                        <a href="{{ url_for('dashboard') }}" class="btn btn-navpri fa-solid fa-chart-line"> Dashboard </a>
+                        <a href="{{ url_for('dashboard') }}" class="btn btn-navpri fa-solid fa-chart-line">  <br></br> Dashboard </a>
                         
-                        <a href="{{ url_for('receitas')  }}" class="btn btn-navpri fa-solid fa-money-bill-wave"> Receitas</a>
+                        <a href="{{ url_for('receitas')  }}" class="btn btn-navpri fa-solid fa-money-bill-wave">  <br></br> Receitas</a>
 
-                        <a href="{{ url_for('despesas') }}" < i class="btn btn-navpri fa-solid fa-credit-card"></i> Despesas </a> 
+                        <a href="{{ url_for('despesas') }}" < i class="btn btn-navpri fa-solid fa-credit-card"></i>  <br></br> Despesas </a> 
 
-                        <a href= {{ url_for('logout') }} class="btn btn-navsec fa-solid fa-right-from-bracket"> Sair </a>
+                        <a href="{{ url_for('metas') }}"    < i class="btn btn-navpri fa-solid fa-bullseye"></i>  <br></br>Metas </a>
+
+                    {% if session.get("usuario_admin") %}
+
+                        <a href="{{ url_for('usuarios') }}" class="btn btn-navsec fa-solid fa-users"> <br></br> Usuários </a>
+                        
+                    {% endif %}
+
+                        <a href= "{{ url_for('logout') }}" class="btn btn-navsec fa-solid fa-right-from-bracket">  <br></br> Sair </a>
 
                     {% else %}
 
-                        <a href= {{ url_for('cadastro') }} class="btn btn-navpri fa-solid fa-user-plus"> Criar conta</a>
+                        <a href= "{{ url_for('cadastro') }}" class="btn btn-navpri fa-solid fa-user-plus">  <br></br> Criar conta</a>
 
-                        <a href= {{ url_for('login') }} class="btn btn-navsec fa-solid fa-right-to-bracket"> Fazer login </a>
+                        <a href= "{{ url_for('login') }}" class="btn btn-navsec fa-solid fa-right-to-bracket">  <br></br> Fazer login </a>
 
                     {% endif %}
+
+                    
                     
                 </div>
                     
