@@ -33,27 +33,27 @@
 
                     {% if session.get("usuario_id") %}               
 
-                        <a href="{{ url_for('dashboard') }}" class="btn btn-navpri fa-solid fa-chart-line">  <br></br> Dashboard </a>
+                        <a href="{{ url_for('dashboard') }}" title="DASHBOARD" class="btn btn-navpri fa-solid fa-chart-line">  </a>
                         
-                        <a href="{{ url_for('receitas')  }}" class="btn btn-navpri fa-solid fa-money-bill-wave">  <br></br> Receitas</a>
+                        <a href="{{ url_for('receitas')  }}" title="RECEITAS" class="btn btn-navpri fa-solid fa-money-bill-wave">  </a>
 
-                        <a href="{{ url_for('despesas') }}" < i class="btn btn-navpri fa-solid fa-credit-card"></i>  <br></br> Despesas </a> 
+                        <a href="{{ url_for('despesas') }}" title="DESPESAS"  < i class="btn btn-navpri fa-solid fa-credit-card"></i>  </a> 
 
-                        <a href="{{ url_for('metas') }}"    < i class="btn btn-navpri fa-solid fa-bullseye"></i>  <br></br>Metas </a>
+                        <a href="{{ url_for('metas') }}"    title="METAS" < i class="btn btn-navpri fa-solid fa-bullseye"></i>  </a>
 
                     {% if session.get("usuario_admin") %}
 
-                        <a href="{{ url_for('usuarios') }}" class="btn btn-navsec fa-solid fa-users"> <br></br> Usuários </a>
+                        <a href="{{ url_for('usuarios') }}" title="USUÁRIOS" class="btn btn-navsec fa-solid fa-users"> </a>
                         
                     {% endif %}
 
-                        <a href= "{{ url_for('logout') }}" class="btn btn-navsec fa-solid fa-right-from-bracket">  <br></br> Sair </a>
+                        <a href= "{{ url_for('logout') }}" title="SAIR" class="btn btn-navsec fa-solid fa-right-from-bracket">  </a>
 
                     {% else %}
 
-                        <a href= "{{ url_for('cadastro') }}" class="btn btn-navpri fa-solid fa-user-plus">  <br></br> Criar conta</a>
+                        <a href= "{{ url_for('cadastro') }}"  title="CADASTRO"class="btn btn-navpri fa-solid fa-user-plus"> </a>
 
-                        <a href= "{{ url_for('login') }}" class="btn btn-navsec fa-solid fa-right-to-bracket">  <br></br> Fazer login </a>
+                        <a href= "{{ url_for('login') }}" title="LOGIN" class="btn btn-navsec fa-solid fa-right-to-bracket">  </a>
 
                     {% endif %}
 

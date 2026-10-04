@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="form-card">
+
+    <h1>Recuperação de Senha</h1>
+
+    <p>
+        Informe seu e-mail para iniciar o processo de recuperação de senha.
+    </p>
+
+    {% with mensagens = get_flashed_messages(with_categories=true) %}
+
+        {% if mensagens %}
+
+            {% for categoria, mensagem in mensagens %}
+
+                <div class="alert {{ categoria }}">
+
+                    {{ mensagem }}
+
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+    {% endwith %}
+
+    <form method="POST">
+
+        <div class="form-group">
+
+            <input
+                type="email"
+                name="email"
+                class="input-field"
+                placeholder="Digite seu e-mail"
+                required>
+
+        </div>
+
+        <div class="form-actions">
+
+            <button
+                type="submit"
+                class="btn btn-positivo">
+
+                <i class="fa-solid fa-key"></i>
+
+                Recuperar Senha
+
+            </button>
+
+        </div>
+
+    </form>
+
+    <div class="form-links">
+
+        <p>
+            Já possui uma conta?
+        </p>
+
+                    <a href="{{ url_for('login') }}" class="register-link"> Fazer login </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

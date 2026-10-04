@@ -14,67 +14,64 @@
 
 <section class="benefits">
 
-    <div class="card">
-    <a href="{{ url_for('receitas') }}" 
-    
-        < i class="btn btn-navpri fa-solid fa-money-bill-wave"> 
-            <br></br>
-                RECEITAS              
-        </i>
-    </a> 
-    
-    <br></br>
-    
-    <p> Cadastre e acompanhe suas entradas financeiras.</p>
-    
-    </div>
+    <a href=" {{ url_for('receitas') }}" i class="card dashboard-card">
 
-    <div class="card">
-    <a href="{{ url_for('despesas') }}" 
-    
-        < i class="btn btn-navpri fa-solid fa-credit-card">     
-                
-            <br></br>
-             Despesas
-        </i>
-    </a>
-    
-    <br></br>
+        <i class="btn btn-navpri fa-solid fa-money-bill-wave"></i>
+<br>
+        <h3>Receitas</h3>
+ 
+        <p>R$ {{ total_receitas }}</p>
 
-        <p> Gerencie gastos, vencimentos e pagamentos.</p>
-        
-    </div>
-    
-    <div class="card">
-    <a href="{{ url_for('metas') }}"    
-    
-        < i class="btn btn-navpri fa-solid fa-bullseye">
+        <p>
+            Cadastre e acompanhe suas entradas financeiras.
+        </p>
 
-         <br></br>
-            Metas
-        </i>
     </a>
 
-    <br></br>
-            <p>  Acompanhe seus objetivos financeiros.</p>
-    </div>        
+     <a href="{{ url_for('despesas') }}"  i class="card dashboard-card">
 
-    {% if session.get("usuario_admin") %}
+        <i class="btn btn-navpri fa-solid fa-credit-card"></i>
+<br>
+        <h3>Despesas</h3>
 
-    <div class="card">
-    <a href="{{ url_for('usuarios') }}"  
-        
-        < i class="btn btn-navsec fa-solid fa-users">
+        <p>R$ {{ total_despesas }}</p>
 
-         <br></br>
-            Usuários
-         
-        </i>
+        <p>
+            Gerencie gastos, vencimentos e pagamentos.
+        </p>
+
     </a>
-    <br></br>    
-             <p> Gerencie contas e permissões do sistema.</p>       
+
+    <div class="card dashboard-card">
+
+        <i class=" btn btn-navpri fa-solid fa-wallet"></i>
+<br>
+        <h3>Saldo</h3>
+
+        <p>R$ {{ saldo }}</p>
+
+        <p>
+            Resultado entre receitas e despesas.
+        </p>
+
     </div>
-    {% endif %}
+
+    
+     <a href="{{ url_for('metas') }}"  i class="card dashboard-card">
+
+        <i class="btn btn-navpri fa-solid fa-bullseye"></i>
+<br>
+        <h3>Metas</h3>
+
+        <p>{{ total_metas }} Meta ativa </p>
+
+        <p>
+            Acompanhe seus objetivos financeiros.
+        </p>
+
+    </a>
+
+    
 
 </section>
 

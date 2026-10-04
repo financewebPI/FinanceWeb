@@ -1210,6 +1210,66 @@ CRUD completo de metas financeiras implementado com sucesso, permitindo cadastro
 
 incluindo cálculo automático de progresso dos objetivos cadastrados.
 
+## Data: 02/10/2026
+
+### Atividade 36 - Implementação da Recuperação de Senha
+
+#### Objetivo
+
+Implementar um mecanismo de recuperação de senha para usuários cadastrados no sistema FinanceWeb.
+
+####Descrição
+
+Foi desenvolvido o primeiro fluxo de recuperação de senha da aplicação utilizando integração entre Flask e PostgreSQL.
+
+Inicialmente foi criada a rota protegida:
+
+/esqueci-senha
+
+permitindo que usuários informem o endereço de e-mail cadastrado no sistema.
+
+Após o recebimento do e-mail, foi implementada uma validação no banco de dados para verificar a existência do usuário informado.
+
+Quando localizado, o sistema redireciona para a tela de redefinição de senha:
+
+/redefinir-senha/<id>
+
+Foi desenvolvido um formulário específico para definição de uma nova senha, incluindo:
+
+Nova Senha;
+
+Confirmação da Nova Senha.
+
+Também foi implementada validação para garantir que os dois campos possuam valores idênticos antes da atualização dos dados.
+
+Após a validação, o sistema realiza a atualização da senha diretamente na tabela de usuários do PostgreSQL e redireciona o usuário para a tela de Login.
+
+Durante a implementação foram utilizados:
+
+Flash Messages;
+
+Redirects;
+
+Validação de formulários;
+
+Consultas SQL;
+
+Atualização de registros no PostgreSQL.
+
+#### Observação.
+
+Foi implementada validação para impedir redefinições com senhas divergentes, informando o usuário através de mensagens de erro apropriadas.
+
+Também foram realizadas validações para garantir que apenas usuários existentes possam utilizar o fluxo de recuperação de senha.
+
+A solução foi desenvolvida seguindo os padrões visuais já utilizados nas telas de Login e Cadastro, mantendo consistência de navegação e experiência de utilização.
+
+#### Resultado
+
+Funcionalidade de recuperação de senha implementada com sucesso, permitindo localizar usuários cadastrados, redefinir credenciais de acesso e validar o novo processo de 
+
+autenticação através do sistema.
+
 ## Situação Atual do Projeto
 
 ### Concluído
@@ -1264,10 +1324,12 @@ incluindo cálculo automático de progresso dos objetivos cadastrados.
 ✅ CRUD Completo de Metas
 ✅ Gestão de Metas Financeiras
 ✅ Controle de Progresso das Metas
+✅ Recuperação de Senha
+✅ Redefinição de Senhas
+✅ Validação de Credenciais
 
 ### Próximas Atividades
 
-🔄 Implementar Recuperação de Senha
 🔄 Estruturar Dashboard Financeiro
 🔄 Integrar AwesomeAPI
 🔄 Realizar Deploy no Render

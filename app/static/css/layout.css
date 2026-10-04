@@ -29,7 +29,7 @@ h3{ font-size: 1.2rem; color: var(--fw-dark); margin-bottom: 20px;}
 
 .nav-link { text-decoration: none; color: var(--fw-blue); font-weight: 600;}
 
-.navbar-logo {width: 320px; max-width: 100%; height: auto; object-fit: contain;transition: transform 0.3s ease;}
+.navbar-logo {width: 150px; max-width: 100%; height: auto; object-fit: contain;transition: transform 0.3s ease;}
 
 .navbar-logo:hover { transform: scale(1.05); }
 

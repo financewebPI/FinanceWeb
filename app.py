@@ -580,6 +580,185 @@ def logout():
         url_for("home")
     )
 
+# ------------------ Rota do Esqueci Senha ------------------ #
+@app.route("/esqueci-senha", methods=["GET", "POST"])
+def esqueci_senha():
+
+    if request.method == "POST":
+
+        email = request.form.get("email")
+
+        try:
+
+            con = conectar()
+            cursor = con.cursor()
+
+            cursor.execute(
+                """
+                SELECT id
+                FROM usuarios
+                WHERE email = %s
+                """,
+                (email,)
+            )
+
+            usuario = cursor.fetchone()
+
+            cursor.close()
+            con.close()
+
+            if not usuario:
+
+                flash(
+                    "E-mail não encontrado.",
+                    "erro"
+                )
+
+                return redirect(
+                    url_for("esqueci_senha")
+                )
+
+            return redirect(
+                url_for(
+                    "redefinir_senha",
+                    id=usuario[0]
+                )
+            )
+
+        except Exception as erro:
+
+            print("Erro:", erro)
+
+            flash(
+                "Erro ao processar recuperação de senha.",
+                "erro"
+            )
+
+            return redirect(
+                url_for("esqueci_senha")
+            )
+
+    return render_template(
+        "esqueci_senha.html"
+    )
+
+# ------------------ Rota redefinir senha ------------------ #
+@app.route(
+    "/redefinir-senha/<int:id>",
+    methods=["GET", "POST"]
+)
+def redefinir_senha(id):
+
+    try:
+
+        con = conectar()
+        cursor = con.cursor()
+
+        # Verifica se o usuário existe
+
+        cursor.execute(
+            """
+            SELECT id
+            FROM usuarios
+            WHERE id = %s
+            """,
+            (
+                id,
+            )
+        )
+
+        usuario = cursor.fetchone()
+
+        if not usuario:
+
+            cursor.close()
+            con.close()
+
+            flash(
+                "Usuário não encontrado.",
+                "erro"
+            )
+
+            return redirect(
+                url_for("esqueci_senha")
+            )
+
+        # ==================================
+        # PROCESSAR NOVA SENHA
+        # ==================================
+
+        if request.method == "POST":
+
+            senha = request.form.get("senha")
+            confirmar_senha = request.form.get(
+                "confirmar_senha"
+            )
+
+            if senha != confirmar_senha:
+
+                flash(
+                    "As senhas não coincidem.",
+                    "erro"
+                )
+
+                cursor.close()
+                con.close()
+
+                return redirect(
+                    url_for(
+                        "redefinir_senha",
+                        id=id
+                    )
+                )
+
+            cursor.execute(
+                """
+                UPDATE usuarios
+                SET senha = %s
+                WHERE id = %s
+                """,
+                (
+                    senha,
+                    id
+                )
+            )
+
+            con.commit()
+
+            cursor.close()
+            con.close()
+
+            flash(
+                "Senha redefinida com sucesso!",
+                "sucesso"
+            )
+
+            return redirect(
+                url_for("login")
+            )
+
+        cursor.close()
+        con.close()
+
+        return render_template(
+            "redefinir_senha.html"
+        )
+
+    except Exception as erro:
+
+        print(
+            "Erro ao redefinir senha:",
+            erro
+        )
+
+        flash(
+            "Erro ao redefinir senha.",
+            "erro"
+        )
+
+        return redirect(
+            url_for("esqueci_senha")
+        )
 # ------------------ Rota do Dashboard ------------------ #
 @app.route("/dashboard")
 def dashboard():
@@ -595,9 +774,93 @@ def dashboard():
             url_for("login")
         )
 
-    return render_template(
-        "dashboard.html"
-    )
+    try:
+
+        con = conectar()
+        cursor = con.cursor()
+
+        # ==========================
+        # TOTAL DE RECEITAS
+        # ==========================
+
+        cursor.execute(
+            """
+            SELECT COALESCE(SUM(valor), 0)
+            FROM receitas
+            WHERE usuario_id = %s
+            """,
+            (
+                session["usuario_id"],
+            )
+        )
+
+        total_receitas = cursor.fetchone()[0]
+
+        # ==========================
+        # TOTAL DE DESPESAS
+        # ==========================
+
+        cursor.execute(
+            """
+            SELECT COALESCE(SUM(valor), 0)
+            FROM despesas
+            WHERE usuario_id = %s
+            """
+            ,
+            (
+                session["usuario_id"],
+            )
+        )
+
+        total_despesas = cursor.fetchone()[0]
+
+        # ==========================
+        # TOTAL DE METAS
+        # ==========================
+
+        cursor.execute(
+            """
+            SELECT COUNT(*)
+            FROM metas
+            WHERE usuario_id = %s
+            """
+            ,
+            (
+                session["usuario_id"],
+            )
+        )
+
+        total_metas = cursor.fetchone()[0]
+
+        # ==========================
+        # SALDO
+        # ==========================
+
+        saldo = total_receitas - total_despesas
+
+        cursor.close()
+        con.close()
+
+        return render_template(
+            "dashboard.html",
+            total_receitas=total_receitas,
+            total_despesas=total_despesas,
+            saldo=saldo,
+            total_metas=total_metas
+        )
+
+    except Exception as erro:
+
+        print("Erro:", erro)
+
+        flash(
+            "Erro ao carregar dashboard.",
+            "erro"
+        )
+
+        return redirect(
+            url_for("home")
+        )
 
 # ------------------ Rota para a Página de Receitas ------------------ #
 @app.route("/receitas", methods=["GET", "POST"])
